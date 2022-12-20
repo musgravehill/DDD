@@ -8,8 +8,21 @@ cd /var/www/mezzio && chmod -R 777 /var/www/mezzio
 cd /var/www/mezzio && composer self-update
 cd /var/www/mezzio && composer clear-cache
 cd /var/www/mezzio && composer create-project mezzio/mezzio-skeleton mezzio
+
+modular
+laminas-servicemanager
+laminas-router
+laminas-view
+err-handler=none
+
 cd /var/www/mezzio/mezzio && composer install
+
+inject=1, yes
+
 cd /var/www/mezzio/mezzio && composer dump-autoload
 cd /var/www/mezzio/mezzio && composer development-enable
 cd /var/www/mezzio/mezzio && composer development-status
+
+$ composer update --no-scripts
+$ composer test
  
