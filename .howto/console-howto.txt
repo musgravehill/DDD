@@ -2,8 +2,14 @@
 vscode docker php_mezzio "Attach shell"
 terminal:
 
+cd /var/www/mezzio
 
-chmod -R 774 /var/www/mezzio
-
+cd /var/www/mezzio && chmod -R 777 /var/www/mezzio
+cd /var/www/mezzio && composer self-update
+cd /var/www/mezzio && composer clear-cache
 cd /var/www/mezzio && composer create-project mezzio/mezzio-skeleton mezzio
+cd /var/www/mezzio/mezzio && composer install
+cd /var/www/mezzio/mezzio && composer dump-autoload
+cd /var/www/mezzio/mezzio && composer development-enable
+cd /var/www/mezzio/mezzio && composer development-status
  
