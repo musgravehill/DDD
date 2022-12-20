@@ -1,5 +1,0 @@
-
-vscode docker php_mezzio "Attach shell"
-terminal:
-
-chmod 774 /var/www/mezzio

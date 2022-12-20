@@ -1,0 +1,9 @@
+
+vscode docker php_mezzio "Attach shell"
+terminal:
+
+
+chmod -R 774 /var/www/mezzio
+
+cd /var/www/mezzio && composer create-project mezzio/mezzio-skeleton mezzio
+ 
