@@ -1,19 +1,19 @@
 version: '3.9'
 
 services:
-    nginx_msd:
+    nginx_mezzio:
         image: nginx:latest
         ports:
-            - "8080:80"
+            - "80:80"
         volumes:
-            - .:/var/www/m.sd.ru #see rootDir ./docker-conf/nginxSites.confs
-            - /home/bob/DEV/www/pma-5.1.3:/var/www/pma.ru #see rootDir ./docker-conf/nginxSites.confs
+            - .:/var/www/mezzio #see rootDir ./docker-conf/nginxSites.confs
+            #- /home/bob/DEV/www/pma-5.1.3:/var/www/pma.ru #see rootDir ./docker-conf/nginxSites.confs
             - ./docker-conf/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
-            - ./docker-conf/nginx/error.log:/var/log/nginx/error.log
+            #- ./docker-conf/nginx/error.log:/var/log/nginx/error.log
         networks:
-            - network_msd
-    php_msd:
-        #nginx listen   php_msd:9000   
+            - network_mezzio
+    php_mezzio:
+        #nginx listen   php_mezzio:9000   
         build:
             args:
                 - arg_user=bob
@@ -21,40 +21,23 @@ services:
                 - arg_gid=1000
             context: .
             dockerfile: Dockerfile
-        container_name: php_msd
-        image: php_msd
+        container_name: php_mezzio
+        image: php_mezzio
         volumes:
-            - .:/var/www/m.sd.ru #see rootDir ./docker-conf/nginxSites.confs
-            - /home/bob/DEV/www/pma-5.1.3:/var/www/pma.ru #see rootDir ./docker-conf/nginxSites.confs
-            - ./docker-conf/docker-entrypoint.sh:/var/www/m.sd.ru/docker-conf/docker-entrypoint.sh
+            - .:/var/www/mezzio #see rootDir ./docker-conf/nginxSites.confs
+            #- /home/bob/DEV/www/pma-5.1.3:/var/www/pma.ru #see rootDir ./docker-conf/nginxSites.confs
+            - ./docker-conf/docker-entrypoint.sh:/var/www/mezzio/docker-conf/docker-entrypoint.sh
         networks:
-            - network_msd
-        entrypoint: /var/www/m.sd.ru/docker-conf/docker-entrypoint.sh
-        #docker-entrypoint.sh ==> cd /var/www/m.sd.ru && composer update  
-        #May be better: docker-compose exec php_msd    composer install/update?
-        extra_hosts:               
-            - "tt.ru:host-gateway"  #for tt.ru/API/  
-    mariadb_msd:
-        # configDB.php host=mariadb_msd, NOT localhost!
-        container_name: mariadb_msd
-        image: mariadb:10.5.15
-        networks:
-            - network_msd
-        #restart: always
-        environment:
-            #MARIADB_ROOT_HOST: localhost #Setting this to localhost will prevent any root user being accessible except via the unix socket.
-            MARIADB_ROOT_PASSWORD: 0
-            MARIADB_USER: m.sd.ru
-            MARIADB_PASSWORD: m.sd.rupass
-            MARIADB_DATABASE: m.sd.ru
-        volumes:
-            - volume_mariadb_msd:/var/lib/mysql #named volume - persistent, does not disappear after docker-compose down
-        #ports:
-            #- "3306:3306"   
+            - network_mezzio
+        entrypoint: /var/www/mezzio/docker-conf/docker-entrypoint.sh
+        #docker-entrypoint.sh ==> cd /var/www/mezzio && composer update  
+        #May be better: docker-compose exec php_mezzio    composer install/update?
+        #extra_hosts:               
+            #- "tt.ru:host-gateway"  #for tt.ru/API/     
 
 networks:
-    network_msd:
+    network_mezzio:
         driver: bridge
 
 volumes:
-    volume_mariadb_msd: #named volume - persistent, does not disappear after docker-compose down
+    volume_mariadb_mezzio: #named volume - persistent, does not disappear after docker-compose down
