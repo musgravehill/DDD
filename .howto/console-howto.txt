@@ -40,6 +40,7 @@ cd /var/www/mezzio/mezzio && composer install
 
 cd /var/www/mezzio/mezzio && composer dump-autoload
 cd /var/www/mezzio/mezzio && composer development-enable
+cd /var/www/mezzio/mezzio && composer development-disable
 cd /var/www/mezzio/mezzio && composer development-status
 
 $ composer update --no-scripts
