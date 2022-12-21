@@ -48,13 +48,14 @@
     "require": {
         "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
         "composer/package-versions-deprecated": "^1.10.99",
+        "filp/whoops": "^2.14",
         "laminas/laminas-component-installer": "^2.6 || ^3.0",
         "laminas/laminas-config-aggregator": "^1.6",
         "laminas/laminas-diactoros": "^2.7",
+        "laminas/laminas-servicemanager": "^3.4",
         "laminas/laminas-stdlib": "^3.6",
         "mezzio/mezzio": "^3.7",
         "mezzio/mezzio-helpers": "^5.7",
-        "laminas/laminas-servicemanager": "^3.4",
         "mezzio/mezzio-laminasrouter": "^3.0.1",
         "mezzio/mezzio-laminasviewrenderer": "^2.2"
     },

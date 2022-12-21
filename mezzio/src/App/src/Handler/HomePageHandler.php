@@ -35,6 +35,8 @@ class HomePageHandler implements RequestHandlerInterface
     {
         $data = [];
 
+        print_r(($this->containerName)['services']['config']);
+
         switch ($this->containerName) {
             case PimpleContainer::class:
                 $data['containerName'] = 'Pimple';

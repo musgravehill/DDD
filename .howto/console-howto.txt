@@ -13,7 +13,10 @@ modular
 laminas-servicemanager
 laminas-router
 laminas-view
-err-handler=none
+err-handler=none  or whoops
+
+
+composer require filp/whoops
 
 cd /var/www/mezzio/mezzio && composer install
 

@@ -16,7 +16,7 @@ class HomePageHandlerFactory
     public function __invoke(ContainerInterface $container): RequestHandlerInterface
     {
         $router = $container->get(RouterInterface::class);
-        assert($router instanceof RouterInterface);
+        assert($router instanceof RouterInterface);        
 
         //print_r($router);
 

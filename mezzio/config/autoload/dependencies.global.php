@@ -21,6 +21,8 @@ return [
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
+            ErrorHandler::class => Mezzio\Container\ErrorHandlerFactory::class,
+            Mezzio\Middleware\ErrorResponseGenerator::class => Mezzio\Container\ErrorResponseGeneratorFactory::class,
         ],
     ],
 ];
