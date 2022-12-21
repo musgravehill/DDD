@@ -27,14 +27,13 @@ class PageHandler implements RequestHandlerInterface
         $data = [
             'info' =>  print_r($request, true),
         ];
-
-        ///src\App\ConfigProvider.php 'templates'=>'paths'=> ['layout' => [__DIR__ . '/../templates/layout'],
+        
         return new HtmlResponse(
             $this->renderer->render(
                 'page::page',
                 array_merge(
                     $data,
-                    ['layout' => 'app_layout::default',]  // ['layout' => 'page_layout::special',]  see /Page/src/ConfigProvider.php
+                    ['layout' => 'app_layout::common',]  // ['layout' => 'page_layout::special',]  see /Page/src/ConfigProvider.php
                 )
             )
         );

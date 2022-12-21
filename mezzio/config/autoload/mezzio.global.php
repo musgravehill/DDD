@@ -19,6 +19,7 @@ return [
         'error_handler' => [
             'template_404'   => 'app_common::error_404',
             'template_error' => 'app_common::error',
+            'layout' => 'app_layout::common',
         ],
     ],
 ];

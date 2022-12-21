@@ -27,7 +27,7 @@ class HomePageHandler implements RequestHandlerInterface
     public function __construct(
         private string $containerName,
         private RouterInterface $router,
-        private ?TemplateRendererInterface $template = null
+        private ?TemplateRendererInterface $renderer = null
     ) {
     }
 
@@ -67,31 +67,34 @@ class HomePageHandler implements RequestHandlerInterface
             $data['routerDocs'] = 'https://docs.laminas.dev/laminas-router/';
         }
 
-        if ($this->template === null) {
+        if ($this->renderer === null) {
             return new JsonResponse([
                 'welcome' => 'Congratulations! You have installed the mezzio skeleton application.',
                 'docsUrl' => 'https://docs.mezzio.dev/mezzio/',
             ] + $data);
         }
 
-        if ($this->template instanceof PlatesRenderer) {
-            $data['templateName'] = 'Plates';
-            $data['templateDocs'] = 'https://platesphp.com/';
-        } elseif ($this->template instanceof TwigRenderer) {
-            $data['templateName'] = 'Twig';
-            $data['templateDocs'] = 'https://twig.symfony.com';
-        } elseif ($this->template instanceof LaminasViewRenderer) {
-            $data['templateName'] = 'Laminas View';
-            $data['templateDocs'] = 'https://docs.laminas.dev/laminas-view/';
-        }
+        if ($this->renderer instanceof PlatesRenderer) {
+            $data['rendererName'] = 'Plates';
+            $data['rendererDocs'] = 'https://platesphp.com/';
+        } elseif ($this->renderer instanceof TwigRenderer) {
+            $data['rendererName'] = 'Twig';
+            $data['rendererDocs'] = 'https://twig.symfony.com';
+        } elseif ($this->renderer instanceof LaminasViewRenderer) {
+            $data['rendererName'] = 'Laminas View';
+            $data['rendererDocs'] = 'https://docs.laminas.dev/laminas-view/';
+        }    
 
-        /*
-        return new HtmlResponse($this->template->render('app::info', [
-            'layout' => 'layout::info',  // src\App\ConfigProvider.php 'templates'=>'paths'=> ['layout' => [__DIR__ . '/../templates/layout'],
-            'info' => $this->template,
-        ]));
-        */
+        return new HtmlResponse(
+            $this->renderer->render(
+                'app_common::home',
+                array_merge(
+                    $data,
+                    ['layout' => 'app_layout::common',]  // ['layout' => 'page_layout::special',]  see /Page/src/ConfigProvider.php
+                )
+            )
+        );
 
-        return new HtmlResponse($this->template->render('app::home-page', $data));
+        //return new HtmlResponse($this->renderer->render('app_common::home', $data)); try to layout::default   .phtml
     }
 }
