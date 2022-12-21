@@ -18,8 +18,7 @@ return [
         'factories' => [
             'Mezzio\Whoops' => Mezzio\Container\WhoopsFactory::class,
             'Mezzio\WhoopsPageHandler' => Mezzio\Container\WhoopsPageHandlerFactory::class,
-            Mezzio\Middleware\ErrorResponseGenerator::class => Mezzio\Container\WhoopsErrorResponseGeneratorFactory::class,
-            //Mezzio\Middleware\ErrorResponseGenerator::class => Mezzio\Container\WhoopsErrorResponseGeneratorFactory::class,
+            Mezzio\Middleware\ErrorResponseGenerator::class => Mezzio\Container\WhoopsErrorResponseGeneratorFactory::class,           
         ],
     ],
 ];

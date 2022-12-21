@@ -33,9 +33,7 @@ class HomePageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $data = [];      
-        
-        dd
+        $data = [];
 
         switch ($this->containerName) {
             case PimpleContainer::class:
@@ -86,6 +84,11 @@ class HomePageHandler implements RequestHandlerInterface
             $data['templateName'] = 'Laminas View';
             $data['templateDocs'] = 'https://docs.laminas.dev/laminas-view/';
         }
+
+        return new HtmlResponse($this->template->render('app::info', [
+            'layout' => 'layout::info',  // src\App\ConfigProvider.php 'templates'=>'paths'=> ['layout' => [__DIR__ . '/../templates/layout'],
+            'info' => $this->template,
+        ]));
 
         return new HtmlResponse($this->template->render('app::home-page', $data));
     }
