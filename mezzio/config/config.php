@@ -15,8 +15,7 @@ $cacheConfig = [
 
 //\Mezzio\Router\FastRouteRouter\ConfigProvider::class,  //remove from $aggregator[] 
 
-$aggregator = new ConfigAggregator([
-    \Pages\ConfigProvider::class,
+$aggregator = new ConfigAggregator([    
     \Mezzio\Tooling\ConfigProvider::class,
     \Mezzio\LaminasView\ConfigProvider::class,
     \Mezzio\Helper\ConfigProvider::class,
@@ -41,7 +40,7 @@ $aggregator = new ConfigAggregator([
 
 
     App\ConfigProvider::class,
-    Pages\ConfigProvider::class,
+    Page\ConfigProvider::class,
 
 
     // Load application config in a pre-defined order in such a way that local settings

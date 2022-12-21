@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Pages;
+namespace Page;
 
 /**
  * The configuration provider for the Pages module
@@ -47,7 +47,7 @@ class ConfigProvider
         return [
             'paths' => [
                 'page'    => [__DIR__ . '/../templates/page'],                
-                'layout' => [__DIR__ . '/../templates/layout'],
+                'page_layout' => [__DIR__ . '/../templates/layout'],
             ],
         ];
     }

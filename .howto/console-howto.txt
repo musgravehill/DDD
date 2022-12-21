@@ -50,4 +50,18 @@ $ composer test
 =====MEZZIO TOOLs CLI ==========
 composer mezzio mezzio:module:create Pages
 composer mezzio mezzio:module:register Pages
+
+composer mezzio mezzio:handler:create "Pages\Handler\PageViewHandler"- bad! 
+1.dependencies should be in Pages\ConfigProvider, not in config\autoload\tooling
+2. factory return handler:class,  not Psr\Http\Server\RequestHandlerInterface
+
+
+cd /var/www/mezzio/mezzio && composer dump-autoload
+        "autoload": {
+                "psr-4": {
+                    "App\\": "src/App/src/",
+                    "Page\\": "src/Page/src/"
+                }
+            },
+        when add composer.json 
  

@@ -46,10 +46,9 @@ class ConfigProvider
     public function getTemplates(): array
     {
         return [
-            'paths' => [
-                'app'    => [__DIR__ . '/../templates/app'],
-                'error'  => [__DIR__ . '/../templates/error'],
-                'layout' => [__DIR__ . '/../templates/layout'],
+            'paths' => [                
+                'app_common'  => [__DIR__ . '/../templates/common'],
+                'app_layout' => [__DIR__ . '/../templates/layout'],
             ],
         ];
     }
