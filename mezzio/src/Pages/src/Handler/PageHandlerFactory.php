@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handler;
+namespace Pages\Handler;
 
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
@@ -11,24 +11,18 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 use function assert;
 
-class HomePageHandlerFactory
+class PageHandlerFactory
 {
     public function __invoke(ContainerInterface $container): RequestHandlerInterface
     {
         $router = $container->get(RouterInterface::class);
-        assert($router instanceof RouterInterface);   
-        
-        //var_dump(func_get_args()[1]);
-
-        //print_r($router);
-
-        //print_r($container->get(TemplateRendererInterface::class));
+        assert($router instanceof RouterInterface);
 
         $template = $container->has(TemplateRendererInterface::class)
             ? $container->get(TemplateRendererInterface::class)
             : null;
         assert($template instanceof TemplateRendererInterface || null === $template);
 
-        return new HomePageHandler($container::class, $router, $template);
+        return new PageHandler($router, $template);
     }
 }

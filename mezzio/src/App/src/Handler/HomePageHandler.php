@@ -85,10 +85,12 @@ class HomePageHandler implements RequestHandlerInterface
             $data['templateDocs'] = 'https://docs.laminas.dev/laminas-view/';
         }
 
+        /*
         return new HtmlResponse($this->template->render('app::info', [
             'layout' => 'layout::info',  // src\App\ConfigProvider.php 'templates'=>'paths'=> ['layout' => [__DIR__ . '/../templates/layout'],
             'info' => $this->template,
         ]));
+        */
 
         return new HtmlResponse($this->template->render('app::home-page', $data));
     }

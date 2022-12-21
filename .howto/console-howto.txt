@@ -45,4 +45,9 @@ cd /var/www/mezzio/mezzio && composer development-status
 
 $ composer update --no-scripts
 $ composer test
+
+
+=====MEZZIO TOOLs CLI ==========
+composer mezzio mezzio:module:create Pages
+composer mezzio mezzio:module:register Pages
  
