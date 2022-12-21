@@ -38,6 +38,8 @@ class PageHandler implements RequestHandlerInterface
             )
         );
 
+        //default layout see at /config/autoload/mezzio.global.php  templates' => ['layout'
+
         //return new HtmlResponse($this->renderer->render('page::page', $data));
     }
 }

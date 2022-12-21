@@ -21,5 +21,18 @@ return [
             'template_error' => 'app_common::error',
             'layout' => 'app_layout::common',
         ],
+
     ],
+    'templates' => [
+        'layout' => 'app_layout::common',
+        'map'    => [
+            // template => filename pairs
+        ],
+        'paths'  => [
+            // namespace / path pairs
+            //
+            // Numeric namespaces imply the default/main namespace. Paths may be
+            // strings or arrays of string paths to associate with the namespace.
+        ],
+    ]
 ];
