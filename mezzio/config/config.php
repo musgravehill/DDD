@@ -13,6 +13,8 @@ $cacheConfig = [
     'config_cache_path' => 'data/cache/config-cache.php',
 ];
 
+//\Mezzio\Router\FastRouteRouter\ConfigProvider::class,  //remove from $aggregator[] 
+
 $aggregator = new ConfigAggregator([
     \Mezzio\Twig\ConfigProvider::class,
     \Mezzio\Tooling\ConfigProvider::class,
@@ -21,7 +23,7 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Helper\ConfigProvider::class,
     \Mezzio\Router\LaminasRouter\ConfigProvider::class,
     \Laminas\Router\ConfigProvider::class,
-    \Mezzio\Router\FastRouteRouter\ConfigProvider::class,
+    
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
     \Laminas\Validator\ConfigProvider::class,
     // Include cache configuration

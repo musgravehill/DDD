@@ -18,6 +18,10 @@ class HomePageHandlerFactory
         $router = $container->get(RouterInterface::class);
         assert($router instanceof RouterInterface);
 
+        //print_r($router);
+
+        //print_r($container->get(TemplateRendererInterface::class));
+
         $template = $container->has(TemplateRendererInterface::class)
             ? $container->get(TemplateRendererInterface::class)
             : null;
