@@ -17,7 +17,23 @@ err-handler=none
 
 cd /var/www/mezzio/mezzio && composer install
 
-inject=1, yes
+    ==laminas/laminas-component-installer== 
+        This repository contains the Composer plugin class `Laminas\ComponentInstaller\ComponentInstaller`,
+        which provides Composer event hooks for the events:
+            - post-package-install
+            - post-package-uninstall
+
+    extra.laminas` configuration in composer.json
+    laminas-component-installer get configs from components and inject to my config/config.php 
+
+    I use: A **config-provider** is for use with applications that utilize
+        [laminas-config-aggregator](https://github.com/laminas/laminas-config-aggregator)
+        (which may or may not be Mezzio applications). The class listed must be an
+        invokable that returns an array of configuration, and will be injected at the
+        top of:
+        - `config/config.php`
+
+ inject=1, yes
 
 cd /var/www/mezzio/mezzio && composer dump-autoload
 cd /var/www/mezzio/mezzio && composer development-enable

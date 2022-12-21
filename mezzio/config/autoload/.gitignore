@@ -1,2 +1,2 @@
-local.php
-*.local.php
+#  local.php    I want to save all data!
+# *.local.php   I want to save all data!

@@ -53,4 +53,7 @@ $aggregator = new ConfigAggregator([
     new PhpFileProvider(realpath(__DIR__) . '/development.config.php'),
 ], $cacheConfig['config_cache_path']);
 
+//$res = $aggregator->getMergedConfig();
+//print_r($res['dependencies']);
+
 return $aggregator->getMergedConfig();
