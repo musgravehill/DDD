@@ -41,5 +41,24 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/', App\Handler\HomePageHandler::class, 'home');
     $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
 
-    $app->get('/page', Page\Handler\PageHandler::class, null);
+    /*$app->get(
+        '/page',
+        $factory->pipeline([
+            //some mw
+            Page\Handler\PageHandler::class,
+            //some mw         
+        ]),
+        null
+    );*/
+
+    $app->route(
+        '/page',
+        $factory->pipeline([
+            //some mw
+            Page\Handler\PageHandler::class,
+            //some mw         
+        ]),
+        Mezzio\Router\Route::HTTP_METHOD_ANY,
+        'page'
+    );
 };
