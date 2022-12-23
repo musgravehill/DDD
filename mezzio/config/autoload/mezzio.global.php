@@ -34,5 +34,5 @@ return [
             // Numeric namespaces imply the default/main namespace. Paths may be
             // strings or arrays of string paths to associate with the namespace.
         ],
-    ]
+    ],
 ];

@@ -20,4 +20,12 @@ return [
             Mezzio\Middleware\ErrorResponseGenerator::class => Mezzio\Container\WhoopsErrorResponseGeneratorFactory::class,            
         ],
     ],
+    'whoops' => [
+        'json_exceptions' => [
+            'display'    => true,
+            'show_trace' => true,
+            'ajax_only'  => true,
+        ],
+        //'editor' => 'editor name, editor service name, or callable',
+    ],
 ];
