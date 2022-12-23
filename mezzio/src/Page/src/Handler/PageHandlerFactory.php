@@ -14,12 +14,13 @@ class PageHandlerFactory
 {
     public function __invoke(ContainerInterface $container): RequestHandlerInterface
     {
-
         $renderer = $container->has(TemplateRendererInterface::class)
             ? $container->get(TemplateRendererInterface::class)
             : null;
         assert($renderer instanceof TemplateRendererInterface || null === $renderer);
 
-        return new PageHandler($renderer);
+        $item = new PageHandler($renderer);
+
+        return $item;
     }
 }

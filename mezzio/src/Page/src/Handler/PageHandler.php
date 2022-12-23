@@ -25,9 +25,9 @@ class PageHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = [
-            'info' =>  print_r($request::class, true),
-        ];
-        
+            'info' => '',
+        ];        
+
         return new HtmlResponse(
             $this->renderer->render(
                 'page::page',

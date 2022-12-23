@@ -17,7 +17,7 @@ class ConfigProvider
      * To add a bit of a structure, each section is defined in a separate
      * method which returns an array with its configuration.
      */
-    public function __invoke() : array
+    public function __invoke(): array
     {
         return [
             'dependencies' => $this->getDependencies(),
@@ -28,25 +28,31 @@ class ConfigProvider
     /**
      * Returns the container dependencies
      */
-    public function getDependencies() : array
+    public function getDependencies(): array
     {
         return [
-            'invokables' => [
-            ],
+            'invokables' => [],
             'factories'  => [
                 Handler\PageHandler::class => Handler\PageHandlerFactory::class,
+            ],
+            'delegators' => [
+                Handler\PageHandler::class => [
+                    DelegatorFactory\PageDelegatorFactory_1::class,
+                    DelegatorFactory\PageDelegatorFactory_2::class,
+                    DelegatorFactory\PageDelegatorFactory_3::class,
+                ],
             ],
         ];
     }
 
-     /**
+    /**
      * Returns the templates configuration
      */
     public function getTemplates(): array
     {
         return [
             'paths' => [
-                'page'    => [__DIR__ . '/../templates/page'],                
+                'page'    => [__DIR__ . '/../templates/page'],
                 'page_layout' => [__DIR__ . '/../templates/layout'],
             ],
         ];
