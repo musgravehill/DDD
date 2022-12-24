@@ -53,11 +53,16 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
 
     $app->route(
         '/page',
-        $factory->pipeline([
+        [
             Page\Middleware\HeaderPageMiddleware::class,
             //some mw         
             Page\Handler\PageHandler::class, //handler stop propogation and return response            
-        ]),
+        ],
+        /*$factory->pipeline([
+            Page\Middleware\HeaderPageMiddleware::class,
+            //some mw         
+            Page\Handler\PageHandler::class, //handler stop propogation and return response            
+        ]),*/
         Mezzio\Router\Route::HTTP_METHOD_ANY,
         'page'
     );

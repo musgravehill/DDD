@@ -9,6 +9,25 @@ use Psr\Container\ContainerInterface;
 //
 use Page\DelegatorFactory\PageHandlerDelegator_1;
 
+/*
+
+Delegator factories are called in the order they appear in configuration. 
+For the first delegator factory, the $callback argument will be essentially the return value of $container->get() 
+for the given service if there were no delegator factories attached to it;
+ in other words, it would be the invokable or service returned by a factory, after alias resolution.
+
+ Each delegator then returns a value, and that value will be what $callback returns for the next delegator. 
+ If the delegator is the last in the list, then what it returns becomes the final value for the service in the container; 
+ subsequent calls to $container->get() for that service will return that value. Delegators MUST return a value!
+
+For container implementors, delegators MUST only be called when initially creating the service, and not each time a service is retrieved.
+
+Common use cases for delegators include:
+
+Decorating an instance so that it may be used in another context (e.g., decorating a PHP callable to be used as PSR-15 middleware).
+Injecting collaborators (e.g., adding listeners to the ErrorHandler).
+Conditionally replacing an instance based on configuration (e.g., swapping debug-enabled middleware for production middleware).
+*/
 
 /**
  * Add functionality or behavior?
