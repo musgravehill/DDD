@@ -21,11 +21,12 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Psr\Container\ContainerInterface;
 
 class HomePageHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private string $containerName,
+        private ContainerInterface $container,
         private RouterInterface $router,
         private ?TemplateRendererInterface $renderer = null
     ) {
@@ -35,7 +36,17 @@ class HomePageHandler implements RequestHandlerInterface
     {
         $data = [];
 
-        switch ($this->containerName) {
+        /*
+        $ph = $this->container->get('Page\Handler\PageHandler');
+        $ph->addBehavior('b111');
+        $ph->addBehavior('b112');
+        $ph->addBehavior('b113');
+        $ph = $this->container->get('Page\Handler\PageHandler'); //return existed object! Singleton.
+        echo implode('  ', $ph->getBehaviors()); die;*/
+
+
+
+        switch ($this->container::class) {
             case PimpleContainer::class:
                 $data['containerName'] = 'Pimple';
                 $data['containerDocs'] = 'https://pimple.symfony.com/';
@@ -83,7 +94,7 @@ class HomePageHandler implements RequestHandlerInterface
         } elseif ($this->renderer instanceof LaminasViewRenderer) {
             $data['rendererName'] = 'Laminas View';
             $data['rendererDocs'] = 'https://docs.laminas.dev/laminas-view/';
-        }    
+        }
 
         return new HtmlResponse(
             $this->renderer->render(

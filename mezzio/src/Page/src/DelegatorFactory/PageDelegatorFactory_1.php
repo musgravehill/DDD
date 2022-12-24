@@ -54,7 +54,8 @@ class PageDelegatorFactory_1 implements DelegatorFactoryInterface
         */
 
         $item = new PageHandlerDelegator_1($callback());
-        $behavior = 'behavior-PageDelegatorFactory_1'; // $behavior = $container->get('EventManager')->some...;
+        $behavior = 'behavior-PageDelegatorFactory_1'; // $behavior = $container->get('EventManager')->some...;   
+
         $item->addBehavior($behavior);
 
         return $item;
