@@ -26,6 +26,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     $app->pipe(ServerUrlMiddleware::class);
 
 
+    $app->pipe('SessionMiddleware');  
     
 
     // Pipe more middleware here that you want to execute on every request:
@@ -69,6 +70,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - route-based authentication
     // - route-based validation
     // - etc.
+
 
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);

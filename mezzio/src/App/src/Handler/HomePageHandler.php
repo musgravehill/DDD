@@ -23,6 +23,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 
+//
+use PSR7Sessions\Storageless\Http\SessionMiddleware;
+
 class HomePageHandler implements RequestHandlerInterface
 {
     public function __construct(
@@ -35,6 +38,18 @@ class HomePageHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = [];
+
+        /* @var \PSR7Sessions\Storageless\Session\Data $session */
+        $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
+
+        $ui = [
+            'id' => 'e1d0939e89ca43f19548c8868c68c48c',
+            'roles' => [1, 20, 30],
+        ];
+        $session->set('IdentityPersistence', $ui);
+
+        $session->set('counter', $session->get('counter', 0) + 1);
+        return new HtmlResponse((string)$session->get('counter'));
 
         /*
         $ph = $this->container->get('Page\Handler\PageHandler');
