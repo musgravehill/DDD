@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1);  
 
 return [
     // Provides application-wide services.
@@ -23,6 +23,8 @@ return [
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
             ErrorHandler::class => Mezzio\Container\ErrorHandlerFactory::class,
             Mezzio\Middleware\ErrorResponseGenerator::class => Mezzio\Container\ErrorResponseGeneratorFactory::class,
+            //
+            'SessionMiddleware' => App\Middleware\SessionMiddlewareFactory::class,
         ],
     ],
 ];

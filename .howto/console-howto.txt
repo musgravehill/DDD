@@ -4,9 +4,11 @@ terminal:
 
 cd /var/www/mezzio
 
-cd /var/www/mezzio && chmod -R 777 /var/www/mezzio
+cd /var/www/mezzio && chmod -R 777 /var/www/mezzio    
 cd /var/www/mezzio && composer self-update
 cd /var/www/mezzio && composer create-project mezzio/mezzio-skeleton mezzio
+
+
 
 modular
 laminas-servicemanager
@@ -68,5 +70,7 @@ composer mezzio mezzio:handler:create "Pages\Handler\PageViewHandler"   #bad!
 1. dependencies should be in Pages\ConfigProvider, not in config\autoload\tooling
 2. factory return handler:class,  not Psr\Http\Server\RequestHandlerInterface 
 
-
- 
+cd /var/www/mezzio/mezzio && composer require psr7-sessions/storageless 
+composer require "lcobucci/jwt:^4.1"
+composer require "lcobucci/clock:^2.0"
+composer require "dflydev/fig-cookies:^3.0"
