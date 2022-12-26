@@ -18,7 +18,7 @@ class SessionMiddlewareFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        $key = 'mBC5v1sOKVvbdEitdSBenu59nfNfhwkedkJVNabosTw=';
+        $key = 'mBC5v1sOKVvbdEitdSBenu59nfNfhwkedkJVNabosTw='; //TODO change key
 
         //return SessionMiddleware::fromSymmetricKeyDefaults(\Lcobucci\JWT\Signer\Key\InMemory::plainText($key),  60);
 

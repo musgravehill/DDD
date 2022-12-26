@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 
 //
-use PSR7Sessions\Storageless\Http\SessionMiddleware;
+//use PSR7Sessions\Storageless\Http\SessionMiddleware;
 
 class HomePageHandler implements RequestHandlerInterface
 {
@@ -40,7 +40,7 @@ class HomePageHandler implements RequestHandlerInterface
         $data = [];
 
         /* @var \PSR7Sessions\Storageless\Session\Data $session */
-        $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
+        /*$session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
 
         $ui = [
             'id' => 'e1d0939e89ca43f19548c8868c68c48c',
@@ -49,7 +49,7 @@ class HomePageHandler implements RequestHandlerInterface
         $session->set('IdentityPersistence', $ui);
 
         $session->set('counter', $session->get('counter', 0) + 1);
-        return new HtmlResponse((string)$session->get('counter'));
+        return new HtmlResponse((string)$session->get('counter'));*/
 
         /*
         $ph = $this->container->get('Page\Handler\PageHandler');
@@ -62,33 +62,13 @@ class HomePageHandler implements RequestHandlerInterface
 
 
         switch ($this->container::class) {
-            case PimpleContainer::class:
-                $data['containerName'] = 'Pimple';
-                $data['containerDocs'] = 'https://pimple.symfony.com/';
-                break;
             case ServiceManager::class:
                 $data['containerName'] = 'Laminas Servicemanager';
                 $data['containerDocs'] = 'https://docs.laminas.dev/laminas-servicemanager/';
                 break;
-            case ContainerBuilder::class:
-                $data['containerName'] = 'Symfony DI Container';
-                $data['containerDocs'] = 'https://symfony.com/doc/current/service_container.html';
-                break;
-            case 'Elie\PHPDI\Config\ContainerWrapper':
-            case PHPDIContainer::class:
-                $data['containerName'] = 'PHP-DI';
-                $data['containerDocs'] = 'https://php-di.org';
-                break;
-            case MinimalContainer::class:
-                $data['containerName'] = 'Chubbyphp Container';
-                $data['containerDocs'] = 'https://github.com/chubbyphp/chubbyphp-container';
-                break;
         }
 
-        if ($this->router instanceof FastRouteRouter) {
-            $data['routerName'] = 'FastRoute';
-            $data['routerDocs'] = 'https://github.com/nikic/FastRoute';
-        } elseif ($this->router instanceof LaminasRouter) {
+        if ($this->router instanceof LaminasRouter) {
             $data['routerName'] = 'Laminas Router';
             $data['routerDocs'] = 'https://docs.laminas.dev/laminas-router/';
         }
@@ -100,13 +80,7 @@ class HomePageHandler implements RequestHandlerInterface
             ] + $data);
         }
 
-        if ($this->renderer instanceof PlatesRenderer) {
-            $data['rendererName'] = 'Plates';
-            $data['rendererDocs'] = 'https://platesphp.com/';
-        } elseif ($this->renderer instanceof TwigRenderer) {
-            $data['rendererName'] = 'Twig';
-            $data['rendererDocs'] = 'https://twig.symfony.com';
-        } elseif ($this->renderer instanceof LaminasViewRenderer) {
+        if ($this->renderer instanceof LaminasViewRenderer) {
             $data['rendererName'] = 'Laminas View';
             $data['rendererDocs'] = 'https://docs.laminas.dev/laminas-view/';
         }
