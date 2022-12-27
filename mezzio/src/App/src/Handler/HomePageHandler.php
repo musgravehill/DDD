@@ -4,40 +4,35 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
-use Chubbyphp\Container\MinimalContainer;
-use DI\Container as PHPDIContainer;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\ServiceManager\ServiceManager;
 use Mezzio\LaminasView\LaminasViewRenderer;
-use Mezzio\Plates\PlatesRenderer;
-use Mezzio\Router\FastRouteRouter;
 use Mezzio\Router\LaminasRouter;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
-use Mezzio\Twig\TwigRenderer;
-use Pimple\Psr11\Container as PimpleContainer;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
+use App\Session\SessionProviderInterface;
 
 class HomePageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ContainerInterface $container,
         private RouterInterface $router,
-        private ?TemplateRendererInterface $renderer = null
+        private ?TemplateRendererInterface $renderer,
+        private SessionProviderInterface $sessionProvider,
     ) {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = [];
-        
-        $session = (new \App\PersistenceStorage\PersistenceStorageAdapter)($request);
 
+        $session = $this->sessionProvider->getSession($request);
         $ui = [
             'id' => 'e1d0939e89ca43f19548c8868c68c48c',
             'roles' => [1, 20, 30],

@@ -67,7 +67,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - route-based validation
     // - etc.
 
-    $app->pipe('PersistenceStorageMiddleware');
+    $app->pipe('SessionMiddleware');
 
 
     // Register the dispatch middleware in the middleware pipeline

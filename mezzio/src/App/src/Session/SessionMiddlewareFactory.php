@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\PersistenceStorage;
+namespace App\Session;
 
 use Dflydev\FigCookies\Modifier\SameSite;
 use Dflydev\FigCookies\SetCookie;
@@ -14,7 +14,7 @@ use PSR7Sessions\Storageless\Http\SessionMiddleware;
 //
 use Psr\Container\ContainerInterface;
 
-class PersistenceStorageMiddlewareFactory
+class SessionMiddlewareFactory
 {
     public function __invoke(ContainerInterface $container)
     {
