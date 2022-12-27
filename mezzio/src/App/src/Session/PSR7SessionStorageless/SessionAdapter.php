@@ -30,9 +30,9 @@ class SessionAdapter implements SessionInterface
      * @param null|mixed $default Default value to return if $name does not exist.
      * @return mixed
      */
-    public function get(string $name, $default = null)
+    public function get(string $name, $default = null): mixed
     {
-        $this->session->get($name, $default);
+        return $this->session->get($name, $default);
     }
 
     /**

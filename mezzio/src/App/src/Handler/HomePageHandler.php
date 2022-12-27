@@ -17,6 +17,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 use App\Session\SessionProviderInterface;
+use App\Session\SessionInterface;
 
 class HomePageHandler implements RequestHandlerInterface
 {
@@ -37,7 +38,7 @@ class HomePageHandler implements RequestHandlerInterface
             'id' => 'e1d0939e89ca43f19548c8868c68c48c',
             'roles' => [1, 20, 30],
         ];
-        $session->set('IdentityPersistence', $ui);
+        $session->set('IdentityPersistence', $ui);        
 
         $session->set('counter', $session->get('counter', 0) + 1);
         return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);
