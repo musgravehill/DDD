@@ -26,6 +26,9 @@ return [
             //
             'SessionMiddleware' => App\Session\SessionMiddlewareFactory::class, //TODO prod-dev factories
             App\Session\SessionProviderInterface::class => App\Session\PSR7SessionStorageless\SessionProviderFactory::class,
+            //
+            App\Csrf\CsrfGuard::class => App\Csrf\CsrfGuardFactory::class,
+            App\Csrf\CsrfMiddleware::class => App\Csrf\CsrfMiddlewareFactory::class,
         ],
     ],
 ];

@@ -21,7 +21,7 @@ class SessionProvider implements SessionProviderInterface
     public function getSession(ServerRequestInterface $request): SessionInterface
     {
         $attributeKey = (string) SessionMiddleware::SESSION_ATTRIBUTE;
-        $session = $request->getAttribute($attributeKey);
+        $session = $request->getAttribute($attributeKey);        
 
         return new SessionAdapter($session);
     }

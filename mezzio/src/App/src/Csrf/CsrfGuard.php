@@ -1,0 +1,40 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Csrf;
+
+use App\Session\SessionProviderInterface;
+use App\Session\SessionInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
+use function bin2hex;
+use function random_bytes;
+
+class CsrfGuard implements CsrfGuardInterface
+{
+    private SessionInterface $session;
+
+    public function __construct(private SessionProviderInterface $sessionProvider,)
+    {
+    }
+
+    public function start(ServerRequestInterface $request)
+    {
+        $this->session = $this->sessionProvider->getSession($request);        
+    }
+
+    public function generateToken(string $keyName = '__csrf'): string
+    {
+        $token = bin2hex(random_bytes(16));
+        $this->session->set($keyName, $token);
+        return $token;
+    }
+
+    public function validateToken(string $token, string $csrfKey = '__csrf'): bool
+    {
+        $storedToken = $this->session->get($csrfKey, '');
+        $this->session->unset($csrfKey);
+        return $token === $storedToken;
+    }
+}

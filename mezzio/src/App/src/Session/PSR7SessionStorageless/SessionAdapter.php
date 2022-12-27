@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Session\PSR7SessionStorageless;
 
 use App\Session\SessionInterface as SessionInterface;
-use LogicException;
 use PSR7Sessions\Storageless\Session\SessionInterface as PSR7SessionsStoragelessSessionInterface;
 
 class SessionAdapter implements SessionInterface
@@ -20,7 +19,7 @@ class SessionAdapter implements SessionInterface
      */
     public function toArray(): array
     {
-        throw new LogicException('Method "toArray" is not implemeted yet...');
+        throw new \LogicException('Method "toArray" is not implemeted yet...');
         return array(); // $this->session->jsonSerialize();
     }
 

@@ -69,6 +69,8 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
 
     $app->pipe('SessionMiddleware');
 
+    $app->pipe(App\Csrf\CsrfMiddleware::class);
+
 
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);
