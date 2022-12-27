@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Session;
+namespace App\Session\PSR7SessionStorageless;
 
 use Dflydev\FigCookies\Modifier\SameSite;
 use Dflydev\FigCookies\SetCookie;
