@@ -25,7 +25,7 @@ return [
             Mezzio\Middleware\ErrorResponseGenerator::class => Mezzio\Container\ErrorResponseGeneratorFactory::class,
             //
             'SessionMiddleware' => App\Session\SessionMiddlewareFactory::class, //TODO prod-dev factories
-            App\Session\SessionProviderInterface::class => App\Session\SessionProviderFactory::class,
+            App\Session\SessionProviderInterface::class => App\Session\PSR7SessionStorageless\SessionProviderFactory::class,
         ],
     ],
 ];

@@ -6,7 +6,7 @@ namespace App\Session\PSR7SessionStorageless;
 
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
 use Psr\Http\Message\ServerRequestInterface;
-use \App\Session\SessionProviderInterface;
+use App\Session\SessionProviderInterface;
 use App\Session\SessionInterface;
 
 class SessionProvider implements SessionProviderInterface
@@ -21,6 +21,8 @@ class SessionProvider implements SessionProviderInterface
     public function getSession(ServerRequestInterface $request): SessionInterface
     {
         $attributeKey = (string) SessionMiddleware::SESSION_ATTRIBUTE;
-        return $request->getAttribute($attributeKey);
+        $session = $request->getAttribute($attributeKey);
+
+        return new SessionAdapter($session);
     }
 }
