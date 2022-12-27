@@ -23,7 +23,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // The error handler should be the first (most outer) middleware to catch
     // all Exceptions.
     $app->pipe(ErrorHandler::class);  //print_r($container->get(ErrorResponseGenerator::class));
-    $app->pipe(ServerUrlMiddleware::class);    
+    $app->pipe(ServerUrlMiddleware::class);
 
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
@@ -67,7 +67,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - route-based validation
     // - etc.
 
-    $app->pipe('SessionMiddleware');  
+    $app->pipe('PersistenceStorageMiddleware');
 
 
     // Register the dispatch middleware in the middleware pipeline

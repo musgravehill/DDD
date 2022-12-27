@@ -24,9 +24,20 @@ class PageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $session = (new \App\PersistenceStorage\PersistenceStorageAdapter)($request);
+
+        $ui = [
+            'id' => 'e1d0939e89ca43f19548c8868c68c48c',
+            'roles' => [1, 20, 30],
+        ];
+        $session->set('IdentityPersistence', $ui);
+
+        $session->set('counter', $session->get('counter', 0) + 1);
+        return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);
+
         $data = [
             'info' => '',
-        ];        
+        ];
 
         return new HtmlResponse(
             $this->renderer->render(

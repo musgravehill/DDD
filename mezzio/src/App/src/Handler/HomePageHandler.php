@@ -23,9 +23,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 
-//
-//use PSR7Sessions\Storageless\Http\SessionMiddleware;
-
 class HomePageHandler implements RequestHandlerInterface
 {
     public function __construct(
@@ -38,9 +35,8 @@ class HomePageHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = [];
-
-        /* @var \PSR7Sessions\Storageless\Session\Data $session */
-        /*$session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
+        
+        $session = (new \App\PersistenceStorage\PersistenceStorageAdapter)($request);
 
         $ui = [
             'id' => 'e1d0939e89ca43f19548c8868c68c48c',
@@ -49,7 +45,7 @@ class HomePageHandler implements RequestHandlerInterface
         $session->set('IdentityPersistence', $ui);
 
         $session->set('counter', $session->get('counter', 0) + 1);
-        return new HtmlResponse((string)$session->get('counter'));*/
+        return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);
 
         /*
         $ph = $this->container->get('Page\Handler\PageHandler');
@@ -57,6 +53,8 @@ class HomePageHandler implements RequestHandlerInterface
         $ph->addBehavior('b112');
         $ph->addBehavior('b113');
         $ph = $this->container->get('Page\Handler\PageHandler'); //return existed object! Singleton.
+        $this->container->BUILD return NEW
+
         echo implode('  ', $ph->getBehaviors()); die;*/
 
 

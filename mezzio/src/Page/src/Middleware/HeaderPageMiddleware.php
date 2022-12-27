@@ -21,6 +21,9 @@ class HeaderPageMiddleware implements MiddlewareInterface
     {
         $response = $handler->handle($request);
 
+        $session = (new \App\PersistenceStorage\PersistenceStorageAdapter)($request);
+        $session->set('counter', $session->get('counter', 0) + 10);
+
         return $response->withHeader('MyHeader', 'Mus');
     }
 }
