@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 //use Laminas\Stratigility\Middleware\ErrorHandler;
 use Mezzio\Application;
+use Laminas\Stratigility\Middleware\ErrorHandler;
 use Mezzio\Handler\NotFoundHandler;
 use Mezzio\Helper\ServerUrlMiddleware;
 use Mezzio\Helper\UrlHelperMiddleware;

@@ -27,5 +27,5 @@ interface CsrfGuardInterface
      */
     public function validateToken(string $token, string $csrfKey = '__csrf'): bool;
 
-    public function start(ServerRequestInterface $request);
+    public function start(ServerRequestInterface $request): void;
 }

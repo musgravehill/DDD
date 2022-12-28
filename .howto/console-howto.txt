@@ -80,4 +80,4 @@ composer require "dflydev/fig-cookies:^3.0"
 
 composer require --dev vimeo/psalm
 
-/var/www/mezzio/mezzio/vendor/bin/psalm
+/var/www/mezzio/mezzio/vendor/bin/psalm --no-cache

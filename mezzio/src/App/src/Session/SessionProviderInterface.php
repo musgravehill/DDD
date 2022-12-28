@@ -14,7 +14,7 @@ interface SessionProviderInterface
      *
      * @param ServerRequestInterface $request
      *
-     * @return object|null
+     * @return SessionInterface|null
      */
     public function getSession(ServerRequestInterface $request): SessionInterface;
 }

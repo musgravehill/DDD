@@ -11,8 +11,7 @@ declare(strict_types=1);
 
 return [];
 
-
-//goto in /mezzio/config/autoload/development.local.php.dist
+/* I use dev-mode => mezzio/config/autoload/development.local.php.dist  
 return [
     'dependencies' => [
         'factories' => [
@@ -21,4 +20,4 @@ return [
             Mezzio\Middleware\ErrorResponseGenerator::class => Mezzio\Container\WhoopsErrorResponseGeneratorFactory::class,           
         ],
     ],
-];
+];*/

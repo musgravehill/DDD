@@ -13,28 +13,32 @@ use function random_bytes;
 
 class CsrfGuard implements CsrfGuardInterface
 {
-    private SessionInterface $session;
+    private ?SessionInterface $session = null;
 
     public function __construct(private SessionProviderInterface $sessionProvider,)
     {
     }
-
-    public function start(ServerRequestInterface $request)
+    
+    public function start(ServerRequestInterface $request): void
     {
-        $this->session = $this->sessionProvider->getSession($request);        
+        $this->session = $this->sessionProvider->getSession($request);
+        if (!$this->session instanceof SessionInterface) {
+            throw new \LogicException('No SessionInterface');
+        }
     }
 
     public function generateToken(string $keyName = '__csrf'): string
     {
         $token = bin2hex(random_bytes(16));
-        $this->session->set($keyName, $token);
+        $this->session?->set($keyName, $token);
         return $token;
     }
 
     public function validateToken(string $token, string $csrfKey = '__csrf'): bool
     {
-        $storedToken = $this->session->get($csrfKey, '');
-        $this->session->unset($csrfKey);
+        /** @var null|string $storedToken */
+        $storedToken = $this->session?->get($csrfKey, '');
+        $this->session?->unset($csrfKey);
         return $token === $storedToken;
     }
 }
