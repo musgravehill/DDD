@@ -31,7 +31,7 @@ class SessionMiddlewareFactory
             SetCookie::create('slsession')
                 // Disable mandatory HTTPS
                 ->withSecure(false)
-                ->withHttpOnly(false)
+                ->withHttpOnly(true)
                 ->withSameSite(SameSite::strict())
                 ->withPath('/'),
             60, // session idle timeout, in seconds
