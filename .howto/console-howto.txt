@@ -77,3 +77,7 @@ composer require "dflydev/fig-cookies:^3.0"
 
 
 /var/www/mezzio/mezzio/vendor/bin/phpunit --colors=always -c /var/www/mezzio/mezzio/phpunit.xml --testsuite 'default'
+
+composer require --dev vimeo/psalm
+
+/var/www/mezzio/mezzio/vendor/bin/psalm
