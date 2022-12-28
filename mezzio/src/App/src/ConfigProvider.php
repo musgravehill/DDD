@@ -32,10 +32,16 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                Handler\PingHandler::class => Handler\PingHandler::class,
+                \App\Handler\PingHandler::class => \App\Handler\PingHandler::class,
             ],
             'factories'  => [
-                Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+                'SessionMiddleware' => \App\Session\PSR7SessionStorageless\SessionMiddlewareFactory::class, //TODO prod-dev factories
+                \App\Session\SessionProviderInterface::class => \App\Session\PSR7SessionStorageless\SessionProviderFactory::class,
+                //
+                \App\Csrf\CsrfGuard::class => \App\Csrf\CsrfGuardFactory::class,
+                \App\Csrf\CsrfMiddleware::class => \App\Csrf\CsrfMiddlewareFactory::class,
+                //
+                \App\Handler\HomePageHandler::class => \App\Handler\HomePageHandlerFactory::class,
             ],
         ];
     }
@@ -46,7 +52,7 @@ class ConfigProvider
     public function getTemplates(): array
     {
         return [
-            'paths' => [                
+            'paths' => [
                 'app_common'  => [__DIR__ . '/../templates/common'],
                 'app_layout' => [__DIR__ . '/../templates/layout'],
             ],
