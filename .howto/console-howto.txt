@@ -74,3 +74,6 @@ cd /var/www/mezzio/mezzio && composer require psr7-sessions/storageless
 composer require "lcobucci/jwt:^4.1"
 composer require "lcobucci/clock:^2.0"
 composer require "dflydev/fig-cookies:^3.0"
+
+
+/var/www/mezzio/mezzio/vendor/bin/phpunit --colors=always -c /var/www/mezzio/mezzio/phpunit.xml --testsuite 'default'
