@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
+use App\Csrf\CsrfGuardInterface;
 use App\Csrf\CsrfMiddleware;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
@@ -40,10 +41,12 @@ class HomePageHandler implements RequestHandlerInterface
             'roles' => [1, 20, 30],
         ];
         $session->set('IdentityPersistence', $ui);
-        $session->set('counter', $session->get('counter', 0) + 1);
+        $session->set('counter', intval($session->get('counter', 0)) + 1);
 
+        /** @var CsrfGuardInterface */
         $guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
-        $token = $guard->generateToken();
+        $_token = $guard->generateToken();
+
 
         //return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);
 

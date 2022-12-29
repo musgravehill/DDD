@@ -18,7 +18,7 @@ class CsrfGuardFactory
         assert($sessionProvider instanceof SessionProviderInterface);
 
         if (!$sessionProvider instanceof SessionProviderInterface) {
-            throw new \LogicException('No SessionProviderInterface');
+            throw new \LogicException('Error '.static::class);
         }
 
         return new CsrfGuard($sessionProvider);

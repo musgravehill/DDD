@@ -32,16 +32,16 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                \App\Handler\PingHandler::class => \App\Handler\PingHandler::class,
+                Handler\PingHandler::class => \App\Handler\PingHandler::class,
             ],
             'factories'  => [
-                'SessionMiddleware' => \App\Session\PSR7SessionStorageless\SessionMiddlewareFactory::class, //TODO prod-dev factories
-                \App\Session\SessionProviderInterface::class => \App\Session\PSR7SessionStorageless\SessionProviderFactory::class,
+                'SessionMiddleware' => Session\PSR7SessionStorageless\SessionMiddlewareFactory::class, //TODO prod-dev factories
+                Session\SessionProviderInterface::class => Session\PSR7SessionStorageless\SessionProviderFactory::class,
                 //
-                \App\Csrf\CsrfGuard::class => \App\Csrf\CsrfGuardFactory::class,
-                \App\Csrf\CsrfMiddleware::class => \App\Csrf\CsrfMiddlewareFactory::class,
+                Csrf\CsrfGuardInterface::class => Csrf\CsrfGuardFactory::class,
+                Csrf\CsrfMiddleware::class => Csrf\CsrfMiddlewareFactory::class,
                 //
-                \App\Handler\HomePageHandler::class => \App\Handler\HomePageHandlerFactory::class,
+                Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
             ],
         ];
     }

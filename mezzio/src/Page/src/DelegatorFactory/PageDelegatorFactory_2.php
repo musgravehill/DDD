@@ -6,6 +6,7 @@ namespace Page\DelegatorFactory;
 
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Add functionality or behavior?
@@ -42,6 +43,8 @@ use Psr\Container\ContainerInterface;
  *   
  */
 
+
+
 class PageDelegatorFactory_2 implements DelegatorFactoryInterface
 {
     public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
@@ -51,9 +54,14 @@ class PageDelegatorFactory_2 implements DelegatorFactoryInterface
         Decorator wrapp original object to new object  new class (more powerfull class) and return. 
         */
 
+        /**
+         * @var PageHandlerDelegator_1
+         */
         $item = $callback();
+
         $behavior = 'behavior-PageDelegatorFactory_2'; // $behavior = $container->get('EventManager')->some...;
         $item->addBehavior($behavior);
+
         return $item;
     }
 }

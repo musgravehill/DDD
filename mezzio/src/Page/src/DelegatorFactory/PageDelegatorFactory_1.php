@@ -8,6 +8,7 @@ use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Psr\Container\ContainerInterface;
 //
 use Page\DelegatorFactory\PageHandlerDelegator_1;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /*
 
@@ -72,7 +73,11 @@ class PageDelegatorFactory_1 implements DelegatorFactoryInterface
         Decorator wrapp original object to new object  new class (more powerfull class) and return. 
         */
 
-        $item = new PageHandlerDelegator_1($callback());
+        /**
+         * @var RequestHandlerInterface
+         */
+        $requestHandlerInterface = $callback();
+        $item = new PageHandlerDelegator_1($requestHandlerInterface);
         $behavior = 'behavior-PageDelegatorFactory_1'; // $behavior = $container->get('EventManager')->some...;   
 
         $item->addBehavior($behavior);

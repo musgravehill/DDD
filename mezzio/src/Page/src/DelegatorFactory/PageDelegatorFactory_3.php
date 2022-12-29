@@ -45,9 +45,13 @@ use Psr\Container\ContainerInterface;
 class PageDelegatorFactory_3 implements DelegatorFactoryInterface
 {
     public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
-    {    
-        $item = $callback();     
-        
+    {
+
+        /**
+         * @var PageHandlerDelegator_1
+         */
+        $item = $callback();
+
         // no object modification, no object wrapping, no object decoration
         // $logger = $container->get('EventManager')->some...;
         // $logger->log($item::class);

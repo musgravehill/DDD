@@ -14,7 +14,7 @@ interface SessionInterface
     /**
      * Retrieve a value from the session.
      *
-     * @param null|mixed $default Default value to return if $name does not exist.
+     * @param int|bool|string|float|mixed[]|object|JsonSerializable|null $default     
      * @return mixed
      */
     public function get(string $name, $default = null);
@@ -30,7 +30,7 @@ interface SessionInterface
      * Values MUST be serializable in any format; we recommend ensuring the
      * values are JSON serializable for greatest portability.
      *
-     * @param mixed $value
+     * @param int|bool|string|float|mixed[]|object|JsonSerializable|null $value
      */
     public function set(string $name, $value): void;
 

@@ -12,18 +12,24 @@ use Mezzio\Template\TemplateRendererInterface;
 
 class PageHandlerDelegator_1 implements RequestHandlerInterface
 {
+    /**
+     * @var array<array-key, scalar>
+     */
     private array $behaviors = [];
 
     public function __construct(private RequestHandlerInterface $PageHandler)
     {
     }
 
-    public function addBehavior($behavior): void
+    public function addBehavior(string $behavior): void
     {
         array_push($this->behaviors, $behavior);
     }
 
-    public function getBehaviors(): array
+    /**
+     * @return array<array-key, scalar>
+     */
+    public function getBehaviors()
     {
         return $this->behaviors;
     }
@@ -32,9 +38,11 @@ class PageHandlerDelegator_1 implements RequestHandlerInterface
     {
         $originalResp = $this->PageHandler->handle($request);
 
+        $behaviors = $this->getBehaviors();
+
         $res = new HtmlResponse(
             $originalResp->getBody()->getContents()
-                . ' ' . implode('  ', $this->getBehaviors())
+                . ' ' . implode('  ', $behaviors)
                 . ' ' . static::class
         );
 

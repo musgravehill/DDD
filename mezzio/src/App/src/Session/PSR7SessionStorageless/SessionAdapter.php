@@ -15,19 +15,17 @@ class SessionAdapter implements SessionInterface
     }
 
     /**
-     * Serialize the session data to an array for storage purposes.
+     * Serialize the session data to an array for storage purposes.    
      */
     public function toArray(): array
     {
-        throw new \LogicException('Method "toArray" is not implemeted yet...');
-        return array(); // $this->session->jsonSerialize();
+        return (array) json_decode(json_encode($this->session->jsonSerialize()), true);;
     }
 
     /**
-     * Retrieve a value from the session.
-     *
-     * @param null|mixed $default Default value to return if $name does not exist.
-     * @return mixed
+     * Retrieve a value from the session.     
+     * 
+     * @param int|bool|string|float|mixed[]|object|JsonSerializable|null $default
      */
     public function get(string $name, $default = null): mixed
     {
@@ -48,7 +46,7 @@ class SessionAdapter implements SessionInterface
      * Values MUST be serializable in any format; we recommend ensuring the
      * values are JSON serializable for greatest portability.
      *
-     * @param mixed $value
+     * @param int|bool|string|float|mixed[]|object|JsonSerializable|null $value
      */
     public function set(string $name, $value): void
     {

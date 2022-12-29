@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace App\Csrf;
 
 use Psr\Container\ContainerInterface;
+use App\Csrf\CsrfGuardInterface;
 
 class CsrfMiddlewareFactory
 {
-    /**
-     * @return CsrfMiddleware
-     */
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container): CsrfMiddleware
     {
-        return new CsrfMiddleware(
-            $container->get(CsrfGuard::class)
-        );
+        /** @var CsrfGuardInterface */
+        $guard = $container->get(CsrfGuardInterface::class);
+
+        return new CsrfMiddleware($guard);
     }
 }

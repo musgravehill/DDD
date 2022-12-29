@@ -17,7 +17,7 @@ class PageHandlerFactory
         $renderer = $container->has(TemplateRendererInterface::class)
             ? $container->get(TemplateRendererInterface::class)
             : null;
-        assert($renderer instanceof TemplateRendererInterface || null === $renderer);
+        assert($renderer instanceof TemplateRendererInterface);
 
         $item = new PageHandler($renderer);
 

@@ -23,7 +23,7 @@ class CsrfGuard implements CsrfGuardInterface
     {
         $this->session = $this->sessionProvider->getSession($request);
         if (!$this->session instanceof SessionInterface) {
-            throw new \LogicException('No SessionInterface');
+            throw new \LogicException('Error '.static::class);
         }
     }
 
