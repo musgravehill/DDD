@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
+use Page\Middleware\ValidatorMiddleware;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -37,7 +39,7 @@ use Psr\Container\ContainerInterface;
  * );
  */
 
-  // PSALM UnusedVariable Can be suppressed by prefixing the variable name with an underscore:
+// PSALM UnusedVariable Can be suppressed by prefixing the variable name with an underscore:
 return static function (Application $app, MiddlewareFactory $_factory, ContainerInterface $_container): void {
     $app->get('/', App\Handler\HomePageHandler::class, 'home');
     $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
@@ -56,6 +58,7 @@ return static function (Application $app, MiddlewareFactory $_factory, Container
         '/page',
         [
             Page\Middleware\HeaderPageMiddleware::class,
+            App\Middleware\ValidatorMiddleware::class,
             //some mw         
             Page\Handler\PageHandler::class, //handler stop propogation and return response            
         ],

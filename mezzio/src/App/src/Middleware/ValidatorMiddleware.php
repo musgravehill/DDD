@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Page\Middleware;
+namespace App\Middleware;
 
 use Mezzio\Router\RouteResult;
 use Psr\Http\Message\ResponseInterface;
@@ -15,13 +15,13 @@ use Psr\Http\Server\RequestHandlerInterface;
  *
  * add header  
  */
-class HeaderPageMiddleware implements MiddlewareInterface
+class ValidatorMiddleware implements MiddlewareInterface
 {
         public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
         {
                 $routeResult = $request->getAttribute(RouteResult::class, false);
                 $response = $handler->handle($request);
-                $info =  $routeResult->getMatchedRouteName();
-                return $response->withHeader('MyHeader', $info);
+                $info = $routeResult->getMatchedRouteName();
+                return $response->withHeader('ValidatorForRoute', $info);
         }
 }
