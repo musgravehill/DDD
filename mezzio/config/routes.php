@@ -65,6 +65,6 @@ return static function (Application $app, MiddlewareFactory $_factory, Container
             Page\Handler\PageHandler::class, //handler stop propogation and return response            
         ]),*/
         Mezzio\Router\Route::HTTP_METHOD_ANY,
-        'page'
+        'page.main'
     );
 };

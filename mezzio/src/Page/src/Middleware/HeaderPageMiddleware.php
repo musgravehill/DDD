@@ -17,15 +17,14 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 class HeaderPageMiddleware implements MiddlewareInterface
 {
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-    {
-        $response = $handler->handle($request);
+        public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+        {
+                $routeResult = $request->getAttribute(RouteResult::class, false);
 
+                $response = $handler->handle($request);
 
+                $info =  $routeResult->getMatchedRouteName;
 
-        //$session = (new \App\Session\SessionAdapter)($request);
-        //$session->set('counter', $session->get('counter', 0) + 10);
-
-        return $response->withHeader('MyHeader', 'Mus');
-    }
+                return $response->withHeader('MyHeader', $info);
+        }
 }
