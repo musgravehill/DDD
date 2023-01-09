@@ -9,6 +9,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Mezzio\Template\TemplateRendererInterface;
+//
+use App\Attribute\EventServiceProvider;
 
 class PageHandler implements RequestHandlerInterface
 {
@@ -30,6 +32,9 @@ class PageHandler implements RequestHandlerInterface
         $data = [
             'info' => '',
         ];
+
+        $eventServiceProvider = new EventServiceProvider;
+        $eventServiceProvider->register();
 
         return new HtmlResponse(
             $this->renderer->render(

@@ -18,7 +18,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class ValidatorMiddleware implements MiddlewareInterface
 {
 
-        public function __construct(private $dtoRequestFactory)
+        public function __construct() //private $dtoRequestFactory
         {
         }
 
@@ -26,8 +26,8 @@ class ValidatorMiddleware implements MiddlewareInterface
         {
                 $routeResult = $request->getAttribute(RouteResult::class, null);
                 $routeName = $routeResult?->getMatchedRouteName();
-                $dto =  $this->dtoRequestFactory->getDto($routeName);
-                $request = $request->withAttribute('DtoForRoute', $dto);
+                //$dto =  $this->dtoRequestFactory->getDto($routeName);
+                //$request = $request->withAttribute('DtoForRoute', $dto);
 
                 //get errors from $dto & stop request propogation in pipeline 
 
