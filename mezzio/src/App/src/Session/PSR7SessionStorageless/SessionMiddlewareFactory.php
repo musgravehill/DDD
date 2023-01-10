@@ -11,6 +11,7 @@ use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
+use App\Session\SessionMiddlewareInterface;
 //
 use Psr\Container\ContainerInterface;
 

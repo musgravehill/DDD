@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Middleware;
+namespace App\Validator;
 
 use Mezzio\Router\RouteResult;
 use Psr\Http\Message\ResponseInterface;

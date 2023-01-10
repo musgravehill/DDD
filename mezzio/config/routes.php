@@ -5,8 +5,8 @@ declare(strict_types=1);
 
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
-use Page\Middleware\ValidatorMiddleware;
 use Psr\Container\ContainerInterface;
+
 
 /**
  * laminas-router route configuration
@@ -57,8 +57,9 @@ return static function (Application $app, MiddlewareFactory $_factory, Container
     $app->route(
         '/page',
         [
-            Page\Middleware\HeaderPageMiddleware::class,
-            App\Middleware\ValidatorMiddleware::class,
+            //Page\Middleware\HeaderPageMiddleware::class,
+            //App\Validator\ValidatorMiddleware::class,
+            //App\Authentication\AuthenticationMiddleware::class,
             //some mw         
             Page\Handler\PageHandler::class, //handler stop propogation and return response            
         ],
