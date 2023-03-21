@@ -19,7 +19,7 @@ class ConfigProvider
             'factories'  => [
                 AuthenticationMiddleware::class => AuthenticationMiddlewareFactory::class,
                 //AuthenticationInterface::class =>
-                //UserInterface::class =>                
+                UserInterface::class => UserFactory::class,
             ],
         ];
     }
