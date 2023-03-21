@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1); 
+declare(strict_types=1);
 
 require_once dirname(__DIR__, 4) . '/vendor/autoload.php'; //up * level
 
@@ -32,10 +32,13 @@ $dbParams = [
     'driver' => 'pdo_mysql',
 ];
 
-$paths = [dirname(__DIR__, 1) .'/Entity'];
+$paths = [dirname(__DIR__, 1) . '/Entity'];
 $isDevMode = false;
 $config = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
 
 $connection = DriverManager::getConnection($dbParams, $config);
 
 $entityManager = new EntityManager($connection, $config);
+
+// TODO make Factory to get a entityManager 
+// see at https://github.com/skar/laminas-doctrine-orm/tree/master/src/Service
