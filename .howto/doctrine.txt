@@ -1,0 +1,12 @@
+edit composer.json
+run docker
+connect to docker, attach shell 
+  cd /var/www/mezzio/mezzio
+  composer update
+
+
+cd /var/www/mezzio/mezzio/src/DoctrineORM/src/Sys
+php tool.php 
+
+cd /var/www/mezzio/mezzio/src/DoctrineORM/src/Sys
+php tool.php orm:schema-tool:create
