@@ -6,7 +6,7 @@ namespace DoctrineORM;
 
 use Doctrine\ORM\EntityManager;
 
-class ConfigProvider
+class ConfigProvider  
 {
 
     public function __invoke(): array
