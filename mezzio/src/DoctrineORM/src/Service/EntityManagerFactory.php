@@ -8,9 +8,11 @@ use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 
+use Psr\Container\ContainerInterface;
+
 class EntityManagerFactory
 {
-    public function __invoke(): EntityManager
+    public function __invoke(?ContainerInterface $container): EntityManager
     {
 
         /**

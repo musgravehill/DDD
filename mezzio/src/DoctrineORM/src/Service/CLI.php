@@ -10,7 +10,7 @@ use DoctrineORM\Service\EntityManagerFactory;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 
-$entityManager = (new EntityManagerFactory)();
+$entityManager = (new EntityManagerFactory)(null);
 
 ConsoleRunner::run(
     new SingleManagerProvider($entityManager)
