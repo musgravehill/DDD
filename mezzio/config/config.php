@@ -37,6 +37,8 @@ $aggregator = new ConfigAggregator([
             return [];
         },
 
+    DoctrineORM\ConfigProvider::class,
+
     App\Handler\ConfigProvider::class,
     App\Session\ConfigProvider::class,
     App\Csrf\ConfigProvider::class,

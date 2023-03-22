@@ -48,6 +48,11 @@ class HomePageHandler implements RequestHandlerInterface
         $_token = $guard->generateToken();
 
 
+        /** @var \Doctrine\ORM\EntityManager $entityManager */
+        $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
+        return new HtmlResponse((string)print_r($entityManager, true));
+
+
         //return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);
 
         /*

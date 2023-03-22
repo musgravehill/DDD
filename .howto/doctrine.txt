@@ -5,8 +5,8 @@ connect to docker, attach shell
   composer update
 
 
-cd /var/www/mezzio/mezzio/src/DoctrineORM/src/Sys
+cd /var/www/mezzio/mezzio/src/DoctrineORM/src/Service
 php tool.php 
 
-cd /var/www/mezzio/mezzio/src/DoctrineORM/src/Sys
+cd /var/www/mezzio/mezzio/src/DoctrineORM/src/Service
 php tool.php orm:schema-tool:create
