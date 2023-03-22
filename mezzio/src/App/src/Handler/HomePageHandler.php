@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 use App\Session\SessionProviderInterface;
 use App\Session\SessionInterface;
- 
+
 
 class HomePageHandler implements RequestHandlerInterface
 {
@@ -50,8 +50,10 @@ class HomePageHandler implements RequestHandlerInterface
 
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */
-        $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
-        return new HtmlResponse((string)print_r($entityManager, true));
+        //$entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
+        //$entityManager1 = $this->container->get(\Doctrine\ORM\EntityManager::class);
+        //return new HtmlResponse((string)spl_object_hash($entityManager) . '_' . spl_object_hash($entityManager1));
+        //return new HtmlResponse((string)print_r($entityManager, true));
 
 
         //return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);
