@@ -17,4 +17,8 @@ class User
 
     #[ORM\Column(type: 'string')]
     private string $email;
+ 
+    #[ORM\Column(type: 'text', name: 'about_me', length: 65000)]
+    private string $aboutMe;
+
 }

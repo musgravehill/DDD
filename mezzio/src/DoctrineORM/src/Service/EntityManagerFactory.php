@@ -32,10 +32,10 @@ class EntityManagerFactory
          */
 
         $dbParams = [
-            'dbname' => 'mydb',
-            'user' => 'user',
-            'password' => 'secret',
-            'host' => 'localhost',
+            'dbname' => 'mezzio',
+            'user' => 'mezzio',
+            'password' => 'qwerty',
+            'host' => 'mariadb_mezzio',
             'driver' => 'pdo_mysql',
         ];
 
