@@ -24,9 +24,8 @@ class Goal
     #[ORM\Column(type: 'string', name: 'ttl', length: 128)]
     private string $ttl;
 
-    /** Many interests have one user */
-    /** Owner side (has ForeignKey FK) */
-    /** Bidirectional */
+    /** ManyToOne:bi Many interests have one user */
+    /** Owner side (has ForeignKey FK) */    
     #[ManyToOne(targetEntity: User::class, inversedBy: 'goals')] // inversedBy: User->goals
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')] // goal.user_id   user.id 
     private User|null $user = null;

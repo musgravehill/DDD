@@ -22,7 +22,7 @@ class Interest
     #[ORM\Column(type: 'string', name: 'ttl', length: 128)]
     private string $ttl;
 
-    /** Many interests have many users */
+    /** ManyToMany:bi Many interests have many users */
     /** Inverse side */
     /** @var Collection<int, Users> */
     #[ManyToMany(targetEntity: User::class, mappedBy: 'interests')]  //  mappedBy: User->interests     

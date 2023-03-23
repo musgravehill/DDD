@@ -28,23 +28,21 @@ class User
     #[ORM\Column(type: 'text', name: 'about_me', length: 65000)]
     private string $aboutMe;
 
-    /** Many users have many interests */
+    /** ManyToMany:bi Many users have many interests */
     /** Owner side */
     /** @var Collection<int, Interest> */
     #[ManyToMany(targetEntity: Interest::class, inversedBy: 'users')]  //  inversedBy: Interest->users
     #[JoinTable(name: 'users_interests')]
     private Collection $interests;
 
-    /** One user has many goals */
-    /** Inverse side */
-    /** Bidirectional */
+    /** OneToMany:bi One user has many goals */
+    /** Inverse side */    
     /** @var Collection<int, Goal> */
     #[OneToMany(targetEntity: Goal::class, mappedBy: 'user')] // mappedBy: Goal->user
     private Collection $goals;
 
-    /** Many users have one city */
-    /** Owner side */
-    /** Unidirectional */
+    /** ManyToOne:uni Many users have one city */
+    /** Owner side */    
     #[ManyToOne(targetEntity: City::class)]
     #[JoinColumn(name: 'city_id', referencedColumnName: 'id')]
     private City|null $city = null;
@@ -60,4 +58,7 @@ class User
         $interest->addUser($this); // synchronously updating Inverse side
         $this->interests[] = $interest; // Owner side  
     }
+
+    // TODO 
+    // add rich-model functions for owner\inverse sides to control changes
 }
