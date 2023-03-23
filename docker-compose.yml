@@ -39,7 +39,7 @@ services:
             #- "tt.ru:host-gateway"  #for tt.ru/API/     
     mariadb_mezzio: # configDB.php host=mariadb_mezzio, NOT localhost!
         container_name: mariadb_mezzio
-        image: mariadb
+        image: mariadb:10.11.2 
         networks:
             - network_mezzio
         restart: always
