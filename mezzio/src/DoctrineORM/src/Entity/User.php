@@ -7,9 +7,11 @@ namespace DoctrineORM\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'user')]
@@ -35,9 +37,17 @@ class User
 
     /** One user has many goals */
     /** Inverse side */
+    /** Bidirectional */
     /** @var Collection<int, Goal> */
     #[OneToMany(targetEntity: Goal::class, mappedBy: 'user')] // mappedBy: Goal->user
     private Collection $goals;
+
+    /** Many users have one city */
+    /** Owner side */
+    /** Unidirectional */
+    #[ManyToOne(targetEntity: City::class)]
+    #[JoinColumn(name: 'city_id', referencedColumnName: 'id')]
+    private City|null $city = null;
 
     public function __construct()
     {
@@ -48,6 +58,6 @@ class User
     public function addInterest(Interest $interest): void
     {
         $interest->addUser($this); // synchronously updating Inverse side
-        $this->interests[] = $interest;
+        $this->interests[] = $interest; // Owner side  
     }
 }

@@ -13,22 +13,14 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'goal')]
-class Goal
+#[ORM\Table(name: 'city')]
+class City
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', name: 'ttl', length: 128)]
-    private string $ttl;
-
-    /** Many interests have one user */
-    /** Owner side (has ForeignKey FK) */
-    /** Bidirectional */
-    #[ManyToOne(targetEntity: User::class, inversedBy: 'goals')] // inversedBy: User->goals
-    #[JoinColumn(name: 'user_id', referencedColumnName: 'id')] // goal.user_id   user.id 
-    private User|null $user = null;
-     
+    #[ORM\Column(type: 'string', name: 'name', length: 128)]
+    private string $name;       
 }
