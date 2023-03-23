@@ -32,7 +32,7 @@ class User
     /** Owner side */
     /** @var Collection<int, Interest> */
     #[ManyToMany(targetEntity: Interest::class, inversedBy: 'users')]  //  inversedBy: Interest->users
-    #[JoinTable(name: 'users_groups')]
+    #[JoinTable(name: 'users_interests')]
     private Collection $interests;
 
     /** One user has many goals */
