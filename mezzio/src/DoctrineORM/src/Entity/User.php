@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToOne;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'user')]
@@ -28,6 +29,11 @@ class User
 
     #[ORM\Column(type: 'text', name: 'about_me', length: 65000)]
     private string $aboutMe;
+
+    /** OneToOne:bi One cart has one user */
+    #[OneToOne(targetEntity: Cart::class, mappedBy: 'user')] // Cart->user
+    #[JoinColumn(name: 'cart_id', referencedColumnName: 'id')] // user.cart_id -> cart.id
+    private Cart|null $cart = null;
 
     /** ManyToMany:bi Many users have many interests */
     /** Owner side */
@@ -48,7 +54,7 @@ class User
     #[JoinColumn(name: 'city_id', referencedColumnName: 'id')]
     private City|null $city = null;
 
-    /** ManyToMany:self-referencing Many users have many users=friends */
+    /** ManyToMany:self-referencing:bi Many users have many users=friends */
     /** @var Collection<int, User> */
     #[JoinTable(name: 'users_friends')]
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
@@ -58,17 +64,16 @@ class User
 
     /** ManyToMany:self-referencing Many users have many users=friends */
     /** @var Collection<int, User> */
-    /* #[ManyToMany(targetEntity: User::class, mappedBy: 'myFriends')]
+    #[ManyToMany(targetEntity: User::class, mappedBy: 'myFriends')]
     private Collection $friendsWithMe;
-    */
 
-    //bi-derectional with $friendsWithMe;
+
 
     public function __construct()
     {
         $this->interests = new ArrayCollection();
         $this->goals = new ArrayCollection();
-        //$this->friendsWithMe = new ArrayCollection();
+        $this->friendsWithMe = new ArrayCollection();
         $this->myFriends = new ArrayCollection();
     }
 
