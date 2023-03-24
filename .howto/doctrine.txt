@@ -16,3 +16,7 @@ php CLI.php
 cd /var/www/mezzio/mezzio/src/DoctrineORM/src/Service
 php CLI.php orm:schema-tool:create
 php CLI.php orm:schema-tool:update --force
+
+// TODO 
+    // add rich-model functions for owner\inverse sides to control changes
+    // advanced-configuration

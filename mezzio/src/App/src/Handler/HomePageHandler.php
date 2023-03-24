@@ -64,6 +64,7 @@ class HomePageHandler implements RequestHandlerInterface
 
         /** @var User */
         $me = $entityManager->find("DoctrineORM\Entity\User", 1);
+        return new HtmlResponse((string)print_r($me->getGender(), true));
 
 
         /*

@@ -15,6 +15,13 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
 
+enum UserGender: string
+{
+    case Male = "M";
+    case Female = "F";
+    case Luntik = "L";
+}
+
 #[ORM\Entity]
 #[ORM\Table(name: 'user')]
 class User
@@ -27,6 +34,14 @@ class User
     public function getId()
     {
         return $this->id;
+    }
+
+    #[ORM\Column(type: 'string', enumType: UserGender::class)]
+    private UserGender $gender = UserGender::Luntik;
+
+    public function getGender(): UserGender
+    {
+        return $this->gender;
     }
 
     #[ORM\Column(type: 'string', unique: true,)]
@@ -118,11 +133,4 @@ class User
         $this->friendsWithMe = new ArrayCollection();
         $this->myFriends = new ArrayCollection();
     }
-
-
-
-
-
-    // TODO 
-    // add rich-model functions for owner\inverse sides to control changes
 }
