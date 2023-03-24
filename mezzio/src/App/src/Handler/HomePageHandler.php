@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 use App\Session\SessionProviderInterface;
 use App\Session\SessionInterface;
-
+use DoctrineORM\Entity\User;
 
 class HomePageHandler implements RequestHandlerInterface
 {
@@ -50,7 +50,42 @@ class HomePageHandler implements RequestHandlerInterface
 
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */
-        //$entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
+        $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
+
+        /*
+        $userA = new User();
+        $userA->setEmail(rand(1,99999999).'@mail.ru');
+        $userB = new User();
+        $userB->setEmail(rand(1,99999999).'@mail.ru');
+        $entityManager->persist($userA);
+        $entityManager->persist($userB);
+        $entityManager->flush();
+        */
+
+        /** @var User */
+        $me = $entityManager->find("DoctrineORM\Entity\User", 1);
+
+
+        /*
+        $myF = $entityManager->find("DoctrineORM\Entity\User", 4);
+        $me->addFriend($myF);
+        $entityManager->persist($me);         
+        $entityManager->flush();
+        */
+
+
+        $res = [];
+        $data = $me->friendsWithMe();
+        foreach ($data as $u) {
+            $res[] = $u->getId();
+        }
+
+        $data = $me->myFriends();
+        foreach ($data as $u) {
+            $res[] = $u->getId();
+        }
+        return new HtmlResponse((string)print_r($res, true));
+
         //$entityManager1 = $this->container->get(\Doctrine\ORM\EntityManager::class);
         //return new HtmlResponse((string)spl_object_hash($entityManager) . '_' . spl_object_hash($entityManager1));
         //return new HtmlResponse((string)print_r($entityManager, true));

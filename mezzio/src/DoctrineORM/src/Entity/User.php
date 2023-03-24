@@ -24,11 +24,25 @@ class User
     #[ORM\GeneratedValue]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string')]
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    #[ORM\Column(type: 'string', unique: true,)]
     private string $email;
 
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
     #[ORM\Column(type: 'text', name: 'about_me', length: 65000)]
-    private string $aboutMe;
+    private string $aboutMe = '';
 
     /** ManyToMany:bi Many users have many interests */
     /** Owner side */
@@ -83,6 +97,16 @@ class User
     {
         $this->friendsWithMe[] = $user;
         $this->myFriends[] = $user;
+    }
+
+    public function myFriends()
+    {
+        return $this->myFriends;
+    }
+
+    public function friendsWithMe()
+    {
+        return $this->friendsWithMe;
     }
 
 
