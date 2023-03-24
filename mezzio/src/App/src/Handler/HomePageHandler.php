@@ -64,26 +64,30 @@ class HomePageHandler implements RequestHandlerInterface
 
         /** @var User */
         $me = $entityManager->find("DoctrineORM\Entity\User", 1);
-        return new HtmlResponse((string)print_r($me->getGender(), true));
+        //return new HtmlResponse((string)print_r($me->getGender(), true));
 
+        
+        $myF = $entityManager->find("DoctrineORM\Entity\User", 2);
+        $me->addFriend($myF);
+        $entityManager->persist($me);               
+        $entityManager->flush();           
 
         /*
-        $myF = $entityManager->find("DoctrineORM\Entity\User", 4);
-        $me->addFriend($myF);
+        $myF = $entityManager->find("DoctrineORM\Entity\User", 2);
+        $me->removeFriend($myF);
         $entityManager->persist($me);         
         $entityManager->flush();
-        */
-
+        */    
 
         $res = [];
         $data = $me->friendsWithMe();
         foreach ($data as $u) {
-            $res[] = $u->getId();
+            $res[] = 'fwm_'.$u->getId();
         }
 
         $data = $me->myFriends();
         foreach ($data as $u) {
-            $res[] = $u->getId();
+            $res[] = 'mf_'.$u->getId();
         }
         return new HtmlResponse((string)print_r($res, true));
 

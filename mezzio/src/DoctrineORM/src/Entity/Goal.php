@@ -26,7 +26,7 @@ class Goal
 
     /** ManyToOne:bi Many goals have one user */
     /** Owner side (has ForeignKey FK) */
-    #[ManyToOne(targetEntity: User::class, inversedBy: 'goals')] // inversedBy: User->goals
+    #[ManyToOne(targetEntity: User::class, inversedBy: 'goals', fetch: 'EXTRA_LAZY')] // inversedBy: User->goals
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')] // goal.user_id   user.id 
     private User|null $user = null;
 

@@ -19,7 +19,7 @@ class Cart
 
     /** OneToOne:uni One cart has one user */
     /** Owner side */
-    #[OneToOne(targetEntity: User::class)] // no InversedBy, because UNIdirectional 
+    #[OneToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')] // no InversedBy, because UNIdirectional 
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')] // cart.user_id -> user.id
     private User|null $user = null;
 

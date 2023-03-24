@@ -75,7 +75,7 @@ class User
     /** OneToMany:bi One user has many goals */
     /** Inverse side */
     /** @var Collection<int, Goal> */
-    #[OneToMany(targetEntity: Goal::class, mappedBy: 'user')] // mappedBy: Goal->user
+    #[OneToMany(targetEntity: Goal::class, mappedBy: 'user', fetch: 'EXTRA_LAZY')] // mappedBy: Goal->user
     private Collection $goals;
 
     public function addGoal(Goal $goal): void
@@ -85,7 +85,7 @@ class User
 
     /** ManyToOne:uni Many users have one city */
     /** Owner side */
-    #[ManyToOne(targetEntity: City::class)]
+    #[ManyToOne(targetEntity: City::class, fetch: 'EXTRA_LAZY')]
     #[JoinColumn(name: 'city_id', referencedColumnName: 'id')]
     private City|null $city = null;
 
@@ -95,23 +95,30 @@ class User
         $this->city = $city; // Owner side  
     }
 
+     /** ManyToMany:self-referencing:bi Many users have many users=friends */
+    /** @var Collection<int, User> */
+    #[ManyToMany(targetEntity: User::class, mappedBy: 'myFriends')] //, fetch: 'EXTRA_LAZY'
+    private Collection $friendsWithMe;
+
     /** ManyToMany:self-referencing:bi Many users have many users=friends */
     /** @var Collection<int, User> */
     #[JoinTable(name: 'users_friends')]
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     #[InverseJoinColumn(name: 'friend_user_id', referencedColumnName: 'id')]
-    #[ManyToMany(targetEntity: 'User')] // , inversedBy: 'friendsWithMe'
+    #[ManyToMany(targetEntity: User::class, inversedBy: 'friendsWithMe')] //, fetch: 'EXTRA_LAZY'
     private Collection $myFriends;
 
-    /** ManyToMany:self-referencing Many users have many users=friends */
-    /** @var Collection<int, User> */
-    #[ManyToMany(targetEntity: User::class, mappedBy: 'myFriends')]
-    private Collection $friendsWithMe;
+    public function removeFriend(User $user): void
+    {
+        $this->friendsWithMe->removeElement($user);
+        //$this->myFriends->removeElement($user);
+    }
 
     public function addFriend(User $user): void
     {
         $this->friendsWithMe[] = $user;
-        $this->myFriends[] = $user;
+        $user->friendsWithMe[]=$this;
+        //$this->myFriends[] = $user;
     }
 
     public function myFriends()

@@ -25,7 +25,7 @@ class Interest
     /** ManyToMany:bi Many interests have many users */
     /** Inverse side */
     /** @var Collection<int, Users> */
-    #[ManyToMany(targetEntity: User::class, mappedBy: 'interests')]  //  mappedBy: User->interests     
+    #[ManyToMany(targetEntity: User::class, mappedBy: 'interests', fetch: 'EXTRA_LAZY')]  //  mappedBy: User->interests     
     private Collection $users;
 
     public function __construct()
