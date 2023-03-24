@@ -30,11 +30,6 @@ class User
     #[ORM\Column(type: 'text', name: 'about_me', length: 65000)]
     private string $aboutMe;
 
-    /** OneToOne:bi One cart has one user */
-    #[OneToOne(targetEntity: Cart::class, mappedBy: 'user')] // Cart->user
-    #[JoinColumn(name: 'cart_id', referencedColumnName: 'id')] // user.cart_id -> cart.id
-    private Cart|null $cart = null;
-
     /** ManyToMany:bi Many users have many interests */
     /** Owner side */
     /** @var Collection<int, Interest> */
@@ -42,17 +37,34 @@ class User
     #[JoinTable(name: 'users_interests')]
     private Collection $interests;
 
+    public function addInterest(Interest $interest): void
+    {
+        $interest->addUser($this); // synchronously updating Inverse side
+        $this->interests[] = $interest; // Owner side  
+    }
+
     /** OneToMany:bi One user has many goals */
     /** Inverse side */
     /** @var Collection<int, Goal> */
     #[OneToMany(targetEntity: Goal::class, mappedBy: 'user')] // mappedBy: Goal->user
     private Collection $goals;
 
+    public function addGoal(Goal $goal): void
+    {
+        $this->goals[] = $goal; // Inverse side
+    }
+
     /** ManyToOne:uni Many users have one city */
     /** Owner side */
     #[ManyToOne(targetEntity: City::class)]
     #[JoinColumn(name: 'city_id', referencedColumnName: 'id')]
     private City|null $city = null;
+
+    public function setCity(City $city): void
+    {
+        // No Inverse side, because UNI
+        $this->city = $city; // Owner side  
+    }
 
     /** ManyToMany:self-referencing:bi Many users have many users=friends */
     /** @var Collection<int, User> */
@@ -67,6 +79,12 @@ class User
     #[ManyToMany(targetEntity: User::class, mappedBy: 'myFriends')]
     private Collection $friendsWithMe;
 
+    public function addFriend(User $user): void
+    {
+        $this->friendsWithMe[] = $user;
+        $this->myFriends[] = $user;
+    }
+
 
 
     public function __construct()
@@ -77,11 +95,9 @@ class User
         $this->myFriends = new ArrayCollection();
     }
 
-    public function addInterest(Interest $interest): void
-    {
-        $interest->addUser($this); // synchronously updating Inverse side
-        $this->interests[] = $interest; // Owner side  
-    }
+
+
+
 
     // TODO 
     // add rich-model functions for owner\inverse sides to control changes

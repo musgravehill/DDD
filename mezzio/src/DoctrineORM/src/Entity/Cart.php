@@ -17,8 +17,9 @@ class Cart
     #[ORM\GeneratedValue]
     private ?int $id = null;    
 
-    /** OneToOne:bi One cart has one user */
-    #[OneToOne(targetEntity: User::class, inversedBy: 'cart')] // User->cart
+    /** OneToOne:uni One cart has one user */
+    /** Owner side */
+    #[OneToOne(targetEntity: User::class)] // no InversedBy, because UNIdirectional 
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')] // cart.user_id -> user.id
     private User|null $user = null;
 

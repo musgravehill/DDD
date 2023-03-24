@@ -24,10 +24,15 @@ class Goal
     #[ORM\Column(type: 'string', name: 'ttl', length: 128)]
     private string $ttl;
 
-    /** ManyToOne:bi Many interests have one user */
-    /** Owner side (has ForeignKey FK) */    
+    /** ManyToOne:bi Many goals have one user */
+    /** Owner side (has ForeignKey FK) */
     #[ManyToOne(targetEntity: User::class, inversedBy: 'goals')] // inversedBy: User->goals
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')] // goal.user_id   user.id 
     private User|null $user = null;
-     
+
+    public function setUser(User $user): void
+    {
+        $user->addGoal($this); // Synchronously updating Inverse side
+        $this->user = $user; // Owner side  
+    }
 }
