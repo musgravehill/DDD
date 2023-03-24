@@ -95,35 +95,34 @@ class User
         $this->city = $city; // Owner side  
     }
 
-     /** ManyToMany:self-referencing:bi Many users have many users=friends */
+    /** ManyToMany:self-referencing:bi Many users have many users=friends */
+    /** Inverse side */
     /** @var Collection<int, User> */
-    #[ManyToMany(targetEntity: User::class, mappedBy: 'myFriends')] //, fetch: 'EXTRA_LAZY'
+    #[ManyToMany(targetEntity: User::class, mappedBy: 'myFriends', fetch: 'EXTRA_LAZY')]
     private Collection $friendsWithMe;
 
     /** ManyToMany:self-referencing:bi Many users have many users=friends */
+    /** Owner side */
     /** @var Collection<int, User> */
     #[JoinTable(name: 'users_friends')]
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     #[InverseJoinColumn(name: 'friend_user_id', referencedColumnName: 'id')]
-    #[ManyToMany(targetEntity: User::class, inversedBy: 'friendsWithMe')] //, fetch: 'EXTRA_LAZY'
+    #[ManyToMany(targetEntity: User::class, inversedBy: 'friendsWithMe', fetch: 'EXTRA_LAZY')]
     private Collection $myFriends;
 
     public function removeFriend(User $user): void
     {
-        $this->friendsWithMe->removeElement($user);
-        //$this->myFriends->removeElement($user);
+        $this->myFriends->removeElement($user);
     }
 
     public function addFriend(User $user): void
     {
-        $this->friendsWithMe[] = $user;
-        $user->friendsWithMe[]=$this;
-        //$this->myFriends[] = $user;
+        $this->myFriends[] = $user; // I can't control friendsWithMe 
     }
 
     public function myFriends()
     {
-        return $this->myFriends;
+        return $this->myFriends; // I can't control friendsWithMe 
     }
 
     public function friendsWithMe()
