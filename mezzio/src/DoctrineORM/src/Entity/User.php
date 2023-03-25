@@ -130,7 +130,10 @@ class User
         return $this->friendsWithMe;
     }
 
-
+    /** One user has one inviter (who invited this person) */
+    #[OneToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[JoinColumn(name: 'inviter_id', referencedColumnName: 'id')]
+    private User|null $inviter = null;
 
     public function __construct()
     {
