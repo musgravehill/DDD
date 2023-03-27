@@ -9,6 +9,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
 
 class EntityManagerFactory
 {
@@ -42,6 +44,28 @@ class EntityManagerFactory
         $paths = [dirname(__DIR__, 1) . '/Entity'];
         $isDevMode = false;
         $config = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
+
+
+        $applicationMode = 'development';
+
+        if ($applicationMode == "development") {
+            $queryCache = new ArrayAdapter();
+            $metadataCache = new ArrayAdapter();
+        } else {
+            $queryCache = new PhpFilesAdapter('doctrine_queries');
+            $metadataCache = new PhpFilesAdapter('doctrine_metadata');
+        }
+
+        $config->setMetadataCache($metadataCache);
+        $config->setQueryCache($queryCache);
+        $config->setProxyDir(dirname(__DIR__, 1) . '/Proxy');
+        $config->setProxyNamespace('DoctrineORM\Proxy');
+
+        if ($applicationMode == "development") {
+            $config->setAutoGenerateProxyClasses(true);
+        } else {
+            $config->setAutoGenerateProxyClasses(false);
+        }
 
         $connection = DriverManager::getConnection($dbParams, $config);
 
