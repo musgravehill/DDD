@@ -31,30 +31,11 @@ class User
     #[ORM\GeneratedValue]
     private ?int $id = null;
 
-    public function getId()
-    {
-        return $this->id;
-    }
-
     #[ORM\Column(type: 'string', enumType: UserGender::class)]
     private UserGender $gender = UserGender::Luntik;
 
-    public function getGender(): UserGender
-    {
-        return $this->gender;
-    }
-
     #[ORM\Column(type: 'string', unique: true,)]
     private string $email;
-
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
 
     #[ORM\Column(type: 'text', name: 'about_me', length: 65000)]
     private string $aboutMe = '';
@@ -66,34 +47,17 @@ class User
     #[JoinTable(name: 'users_interests')]
     private Collection $interests;
 
-    public function addInterest(Interest $interest): void
-    {
-        $interest->addUser($this); // synchronously updating Inverse side
-        $this->interests[] = $interest; // Owner side  
-    }
-
     /** OneToMany:bi One user has many goals */
     /** Inverse side */
     /** @var Collection<int, Goal> */
     #[OneToMany(targetEntity: Goal::class, mappedBy: 'user', fetch: 'EXTRA_LAZY')] // mappedBy: Goal->user
     private Collection $goals;
 
-    public function addGoal(Goal $goal): void
-    {
-        $this->goals[] = $goal; // Inverse side
-    }
-
     /** ManyToOne:uni Many users have one city */
     /** Owner side */
     #[ManyToOne(targetEntity: City::class, fetch: 'EXTRA_LAZY')]
     #[JoinColumn(name: 'city_id', referencedColumnName: 'id')]
     private City|null $city = null;
-
-    public function setCity(City $city): void
-    {
-        // No Inverse side, because UNI
-        $this->city = $city; // Owner side  
-    }
 
     /** ManyToMany:self-referencing:bi Many users have many users=friends */
     /** Inverse side */
@@ -110,6 +74,28 @@ class User
     #[ManyToMany(targetEntity: User::class, inversedBy: 'friendsWithMe', fetch: 'EXTRA_LAZY')]
     private Collection $myFriends;
 
+    /** One user has one inviter (who invited this person) */
+    #[OneToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[JoinColumn(name: 'inviter_id', referencedColumnName: 'id')]
+    private User|null $inviter = null;
+
+    public function __construct()
+    {
+        $this->interests = new ArrayCollection();
+        $this->goals = new ArrayCollection();
+        $this->friendsWithMe = new ArrayCollection();
+        $this->myFriends = new ArrayCollection();
+    }
+
+
+    public function getGender(): UserGender
+    {
+        return $this->gender;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
     public function removeFriend(User $user): void
     {
         $this->myFriends->removeElement($user);
@@ -129,17 +115,26 @@ class User
     {
         return $this->friendsWithMe;
     }
-
-    /** One user has one inviter (who invited this person) */
-    #[OneToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[JoinColumn(name: 'inviter_id', referencedColumnName: 'id')]
-    private User|null $inviter = null;
-
-    public function __construct()
+    public function setCity(City $city): void
     {
-        $this->interests = new ArrayCollection();
-        $this->goals = new ArrayCollection();
-        $this->friendsWithMe = new ArrayCollection();
-        $this->myFriends = new ArrayCollection();
+        // No Inverse side, because UNI
+        $this->city = $city; // Owner side  
+    }
+    public function addGoal(Goal $goal): void
+    {
+        $this->goals[] = $goal; // Inverse side
+    }
+    public function addInterest(Interest $interest): void
+    {
+        $interest->addUser($this); // synchronously updating Inverse side
+        $this->interests[] = $interest; // Owner side  
+    }
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+    public function getEmail(): string
+    {
+        return $this->email;
     }
 }
