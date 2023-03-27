@@ -20,7 +20,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 use App\Session\SessionProviderInterface;
 use App\Session\SessionInterface;
+use DoctrineORM\DTO\UserCreateByEmailPassDTO;
 use DoctrineORM\Entity\User;
+use DoctrineORM\Service\UserRegistration;
 
 class HomePageHandler implements RequestHandlerInterface
 {
@@ -51,6 +53,10 @@ class HomePageHandler implements RequestHandlerInterface
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */
         $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
+        $userRegistration = new UserRegistration($entityManager);
+        $userCreateByEmailPassDTO = new UserCreateByEmailPassDTO('bob@google.com', 'someHashTodo');
+        $userRegistration->UserCreateByEmailPass($userCreateByEmailPassDTO);
+
 
         /*
         $userA = new User();
@@ -63,7 +69,7 @@ class HomePageHandler implements RequestHandlerInterface
         */
 
         /** @var User */
-        $me = $entityManager->find("DoctrineORM\Entity\User", 1);
+        //$me = $entityManager->find("DoctrineORM\Entity\User", 1);
         //return new HtmlResponse((string)print_r($me->getGender(), true));
 
         /*
@@ -73,18 +79,13 @@ class HomePageHandler implements RequestHandlerInterface
         $entityManager->persist($me);  
         $entityManager->persist($myF);               
         $entityManager->flush();
-        */
-
-        /*
+        
         $myF = $entityManager->find("DoctrineORM\Entity\User", 2);
         $me->removeFriend($myF);
         $myF->removeFriend($me);
         $entityManager->persist($me);
-        $entityManager->flush();
-        */
-
-
-
+        $entityManager->flush();     
+   
         $res = [];
         $data = $me->friendsWithMe();
         foreach ($data as $u) {
@@ -95,6 +96,7 @@ class HomePageHandler implements RequestHandlerInterface
             $res[] = 'mf_' . $u->getId();
         }
         return new HtmlResponse((string)print_r($res, true));
+        */
 
         //$entityManager1 = $this->container->get(\Doctrine\ORM\EntityManager::class);
         //return new HtmlResponse((string)spl_object_hash($entityManager) . '_' . spl_object_hash($entityManager1));

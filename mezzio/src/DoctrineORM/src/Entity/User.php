@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
+use DoctrineORM\DTO\UserCreateByEmailPassDTO;
 
 enum UserGender: string
 {
@@ -34,8 +35,11 @@ class User
     #[ORM\Column(type: 'string', enumType: UserGender::class)]
     private UserGender $gender = UserGender::Luntik;
 
-    #[ORM\Column(type: 'string', unique: true,)]
-    private string $email;
+    #[ORM\Column(type: 'string', name: 'auth_email', unique: true, length: 64)]
+    private string $authEmail;
+
+    #[ORM\Column(type: 'string', name: 'auth_phone', unique: true, length: 16)]
+    private string $authPhone;
 
     #[ORM\Column(type: 'string', name: 'pass_hash', length: 128)]
     private ?string $passHash = null;
@@ -77,11 +81,6 @@ class User
     #[ManyToMany(targetEntity: User::class, inversedBy: 'friendsWithMe', fetch: 'EXTRA_LAZY')]
     private Collection $myFriends;
 
-    /** One user has one inviter (who invited this person) */
-    #[OneToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[JoinColumn(name: 'inviter_id', referencedColumnName: 'id')]
-    private User|null $inviter = null;
-
     public function __construct()
     {
         $this->interests = new ArrayCollection();
@@ -90,6 +89,26 @@ class User
         $this->myFriends = new ArrayCollection();
     }
 
+    /** Setters\Getters */
+
+    public function setAuthEmail($authEmail): void
+    {
+        $this->authEmail = $authEmail;
+    }
+
+    public function setPassHash($passHash): void
+    {
+        $this->passHash = $passHash;
+    }
+
+    public function setAuthPhone($authPhone): void
+    {
+        $this->authPhone = $authPhone;
+    }
+
+
+
+    //todo check it
     public function getGender(): UserGender
     {
         return $this->gender;
@@ -130,13 +149,5 @@ class User
     {
         $interest->addUser($this); // synchronously updating Inverse side
         $this->interests[] = $interest; // Owner side  
-    }
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-    public function getEmail(): string
-    {
-        return $this->email;
     }
 }
