@@ -37,6 +37,9 @@ class User
     #[ORM\Column(type: 'string', unique: true,)]
     private string $email;
 
+    #[ORM\Column(type: 'string', name: 'pass_hash', length: 128)]
+    private ?string $passHash = null;
+
     #[ORM\Column(type: 'text', name: 'about_me', length: 65000)]
     private string $aboutMe = '';
 
@@ -86,7 +89,6 @@ class User
         $this->friendsWithMe = new ArrayCollection();
         $this->myFriends = new ArrayCollection();
     }
-
 
     public function getGender(): UserGender
     {
