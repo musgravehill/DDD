@@ -38,7 +38,7 @@ class HomePageHandler implements RequestHandlerInterface
     {
         $data = [];
 
-        $session = $this->sessionProvider->getSession($request);
+       /* $session = $this->sessionProvider->getSession($request);
         $ui = [
             'id' => 'e1d0939e89ca43f19548c8868c68c48c',
             'roles' => [1, 20, 30],
@@ -47,13 +47,13 @@ class HomePageHandler implements RequestHandlerInterface
         $session->set('counter', intval($session->get('counter', 0)) + 1);
 
         /** @var CsrfGuardInterface */
-        $guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
-        $_token = $guard->generateToken();
-
+        //$guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
+       // $_token = $guard->generateToken();
+        
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */
         $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);        
-
+         
 
         /*
         $userA = new User();

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presentation\Home;
 
+use Presentation\Home\Handler\HomePageHandler;
 use Presentation\Home\Handler\HomePageHandlerFactory;
 use Presentation\Home\Handler\PingHandler;
 
