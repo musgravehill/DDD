@@ -41,8 +41,8 @@ use Psr\Container\ContainerInterface;
 
 // PSALM UnusedVariable Can be suppressed by prefixing the variable name with an underscore:
 return static function (Application $app, MiddlewareFactory $_factory, ContainerInterface $_container): void {
-    $app->get('/', App\Handler\HomePageHandler::class, 'home');
-    $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
+    $app->get('/', Presentation\Home\Handler\HomePageHandler::class, 'home');
+    $app->get('/api/ping', Presentation\Home\Handler\PingHandler::class, 'api.ping');
 
     /*$app->get(
         '/page',
@@ -54,6 +54,7 @@ return static function (Application $app, MiddlewareFactory $_factory, Container
         null
     );*/
 
+    /*
     $app->route(
         '/page',
         [
@@ -67,8 +68,9 @@ return static function (Application $app, MiddlewareFactory $_factory, Container
             Page\Middleware\HeaderPageMiddleware::class,
             //some mw         
             Page\Handler\PageHandler::class, //handler stop propogation and return response            
-        ]),*/
+        ]),/
         Mezzio\Router\Route::HTTP_METHOD_ANY,
         'page.main'
     );
+    */
 };

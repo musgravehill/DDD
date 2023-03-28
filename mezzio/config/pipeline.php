@@ -68,9 +68,9 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - route-based validation
     // - etc.
 
-    $app->pipe(App\Session\SessionMiddlewareInterface::class);
+   // $app->pipe(App\Session\SessionMiddlewareInterface::class);
 
-    $app->pipe(App\Csrf\CsrfMiddleware::class);
+   // $app->pipe(App\Csrf\CsrfMiddleware::class);
 
 
     // Register the dispatch middleware in the middleware pipeline
