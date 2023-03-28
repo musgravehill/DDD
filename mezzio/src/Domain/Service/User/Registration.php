@@ -7,7 +7,7 @@ namespace DoctrineORM\Service;
 use DoctrineORM\DTO\UserCreateByEmailPassDTO;
 use DoctrineORM\Entity\User;
 
-class UserRegistration
+class Registration
 {
     public function __construct(
         private \Doctrine\ORM\EntityManager $entityManager
