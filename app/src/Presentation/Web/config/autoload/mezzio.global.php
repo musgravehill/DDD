@@ -17,14 +17,14 @@ return [
         // Provide templates for the error handling middleware to use when
         // generating responses.
         'error_handler' => [
-            'template_404'   => 'app_common::error_404',
-            'template_error' => 'app_common::error',
-            'layout' => 'app_layout::common',
+            'template_404'   => 'sys_view::error_404',  // registered 'folderName/fileName.phtml'   see Handler/Sys
+            'template_error' => 'sys_view::error',  // registered 'folderName/fileName.phtml'   see Handler/Sys
+            'layout' => 'sys_layout::common',  // registered 'folderName/fileName.phtml'   see Handler/Sys
         ],
 
     ],
     'templates' => [
-        'layout' => 'app_layout::common',
+        'layout' => 'sys_layout::common',  // registered 'folderName/fileName.phtml'   see Handler/Sys
         'map'    => [
             // template => filename pairs
         ],

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Presentation\Home\Handler;
+namespace Presentation\Web\Handler\Home\Handler;
 
-use App\Csrf\CsrfGuardInterface;
-use App\Csrf\CsrfMiddleware;
+
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\ServiceManager\ServiceManager;
@@ -18,11 +17,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
-use App\Session\SessionProviderInterface;
-use App\Session\SessionInterface;
-use DoctrineORM\DTO\UserCreateByEmailPassDTO;
-use DoctrineORM\Entity\User;
-use DoctrineORM\Service\UserRegistration;
+
+use Presentation\Web\Middleware\Session\SessionProviderInterface;
 
 class HomePageHandler implements RequestHandlerInterface
 {
@@ -38,7 +34,7 @@ class HomePageHandler implements RequestHandlerInterface
     {
         $data = [];
 
-       /* $session = $this->sessionProvider->getSession($request);
+        /* $session = $this->sessionProvider->getSession($request);
         $ui = [
             'id' => 'e1d0939e89ca43f19548c8868c68c48c',
             'roles' => [1, 20, 30],
@@ -48,12 +44,12 @@ class HomePageHandler implements RequestHandlerInterface
 
         /** @var CsrfGuardInterface */
         //$guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
-       // $_token = $guard->generateToken();
-        
+        // $_token = $guard->generateToken();
+
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */
-        $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);        
-         
+        //$entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
+
 
         /*
         $userA = new User();
@@ -140,10 +136,10 @@ class HomePageHandler implements RequestHandlerInterface
 
         return new HtmlResponse(
             $this->renderer->render(
-                'app_common::home',
+                'home::index', // registered 'folderName/fileName.phtml'   see Handler/Sys or Handler/*** */
                 array_merge(
                     $data,
-                    ['layout' => 'app_layout::common',]  // ['layout' => 'page_layout::special',]  see /Page/src/ConfigProvider.php
+                    ['layout' => 'sys_layout::common',]  // registered 'folderName/fileName.phtml'   see Handler/Sys or Handler/***
                 )
             )
         );

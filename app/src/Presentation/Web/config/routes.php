@@ -41,8 +41,8 @@ use Psr\Container\ContainerInterface;
 
 // PSALM UnusedVariable Can be suppressed by prefixing the variable name with an underscore:
 return static function (Application $app, MiddlewareFactory $_factory, ContainerInterface $_container): void {
-    $app->get('/', Presentation\Home\Handler\HomePageHandler::class, 'home');
-    $app->get('/api/ping', Presentation\Home\Handler\PingHandler::class, 'api.ping');
+    $app->get('/', Presentation\Web\Handler\Home\Handler\HomePageHandler::class, 'home');
+    $app->get('/api/ping', Presentation\Web\Handler\Home\Handler\PingHandler::class, 'api.ping');
 
     /*$app->get(
         '/page',

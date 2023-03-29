@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Presentation\Home\Handler;
+namespace Presentation\Web\Handler\Home\Handler;
 
-use App\Session\SessionProviderInterface;
+use Presentation\Web\Middleware\Session\SessionProviderInterface;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Session\PSR7SessionStorageless;
+namespace Presentation\Web\Middleware\Session\PSR7SessionStorageless;
 
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
 use Psr\Http\Message\ServerRequestInterface;

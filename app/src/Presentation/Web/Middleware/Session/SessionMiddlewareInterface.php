@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Session;
+namespace Presentation\Web\Middleware\Session;
 
 use Psr\Http\Server\MiddlewareInterface;
 

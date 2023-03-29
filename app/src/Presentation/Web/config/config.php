@@ -7,10 +7,11 @@ use Laminas\ConfigAggregator\ConfigAggregator;
 use Laminas\ConfigAggregator\PhpFileProvider;
 use Mezzio\Helper\ConfigProvider; //set some middlewareFactories in ServiceContainer
 
+
 // To enable or disable caching, set the `ConfigAggregator::ENABLE_CACHE` boolean in
 // `config/autoload/local.php`.
 $cacheConfig = [
-    'config_cache_path' => 'data/cache/config-cache.php',
+    'config_cache_path' => 'cache/config-cache.php',
 ];
 
 //\Mezzio\Router\FastRouteRouter\ConfigProvider::class,  //remove from $aggregator[] 
@@ -37,7 +38,9 @@ $aggregator = new ConfigAggregator([
             return [];
         },
 
-    Presentation\Home\ConfigProvider::class,
+    Presentation\Web\Handler\Sys\ConfigProvider::class,
+
+    //Presentation\Home\ConfigProvider::class,
 
     //  DoctrineORM\ConfigProvider::class,
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Presentation\Home\Handler;
+namespace Presentation\Web\Handler\Home\Handler;
 
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;

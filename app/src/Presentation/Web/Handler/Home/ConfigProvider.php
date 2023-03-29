@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Presentation\Home;
+namespace Presentation\Web\Handler\Home;
 
-use Presentation\Home\Handler\HomePageHandler;
-use Presentation\Home\Handler\HomePageHandlerFactory;
-use Presentation\Home\Handler\PingHandler;
+use Presentation\Web\Handler\Home\Handler\HomePageHandler;
+use Presentation\Web\Handler\Home\Handler\HomePageHandlerFactory;
+use Presentation\Web\Handler\Home\Handler\PingHandler;
 
 class ConfigProvider
 {
@@ -34,8 +34,7 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'view'  => [__DIR__ . '/../../templates/view'],
-                'layout' => [__DIR__ . '/../../templates/layout'],
+                'view'  => [__DIR__ . '/../view'],                
             ],
         ];
     }

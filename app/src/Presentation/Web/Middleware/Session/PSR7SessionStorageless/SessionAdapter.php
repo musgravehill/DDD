@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Session\PSR7SessionStorageless;
+namespace Presentation\Web\Middleware\Session\PSR7SessionStorageless;
 
-use App\Session\SessionInterface as SessionInterface;
+use Presentation\Web\Middleware\Session\SessionInterface as SessionInterface;
 use PSR7Sessions\Storageless\Session\SessionInterface as PSR7SessionsStoragelessSessionInterface;
 
 class SessionAdapter implements SessionInterface

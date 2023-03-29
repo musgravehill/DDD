@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Session;
+namespace Presentation\Web\Middleware\Session;
 
 use Psr\Http\Message\ServerRequestInterface;
-use App\Session\SessionInterface;
+use Presentation\Web\Middleware\Session\SessionInterface;
 
 interface SessionProviderInterface
 {
