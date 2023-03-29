@@ -136,7 +136,7 @@ class HomePageHandler implements RequestHandlerInterface
 
         return new HtmlResponse(
             $this->renderer->render(
-                'home::index', // registered 'folderName/fileName.phtml'   see Handler/Sys or Handler/*** */
+                'home_view::index', // registered 'folderName/fileName.phtml'   see Handler/Sys or Handler/*** */
                 array_merge(
                     $data,
                     ['layout' => 'sys_layout::common',]  // registered 'folderName/fileName.phtml'   see Handler/Sys or Handler/***

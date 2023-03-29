@@ -6,8 +6,8 @@ namespace Presentation\Web\Middleware\Session\PSR7SessionStorageless;
 
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
 use Psr\Http\Message\ServerRequestInterface;
-use App\Session\SessionProviderInterface;
-use App\Session\SessionInterface;
+use Presentation\Web\Middleware\Session\SessionProviderInterface;
+use Presentation\Web\Middleware\Session\SessionInterface;
 use PSR7Sessions\Storageless\Session\SessionInterface as PSR7SessionsStoragelessSessionInterface;
 
 class SessionProvider implements SessionProviderInterface

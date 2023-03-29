@@ -34,7 +34,7 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'view'  => [__DIR__ . '/../view'],                
+                'home_view'  => [__DIR__ . '/view'],                
             ],
         ];
     }

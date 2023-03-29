@@ -2,6 +2,8 @@
 
 <h1>Error</h1>
 
+<?php echo  ' =='. __FILE__.'== ' ?>
+
 <p><?= $this->escapeHtml(sprintf('%d %s', $this->status, $this->reason)) ?> error.</p>
 <?php if ($this->status == 404) : ?>
     404 not use, see  mezzio/config/autoload/mezzio.global.php

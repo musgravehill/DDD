@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Presentation\Web\Middleware\Session\PSR7SessionStorageless;
 
-use App\Session\PSR7SessionStorageless\SessionProvider;
+use Presentation\Web\Middleware\Session\PSR7SessionStorageless\SessionProvider;
 use Psr\Container\ContainerInterface;
-use App\Session\SessionProviderInterface;
+use Presentation\Web\Middleware\Session\SessionProviderInterface;
 
 class SessionProviderFactory
 {
