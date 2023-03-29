@@ -6,7 +6,7 @@ chdir(__DIR__ . '/../');
 
 require 'vendor/autoload.php';
 
-$config = include 'config/config.php';
+$config = include 'src/Presentation/Web/config/config.php';   
 
 if (! isset($config['config_cache_path'])) {
     echo "No configuration cache path found" . PHP_EOL;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Presentation\Web\Handler\Home\Handler;
 
-
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\ServiceManager\ServiceManager;
@@ -19,6 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 
 use Presentation\Web\Middleware\Session\SessionProviderInterface;
+use Presentation\Web\Middleware\Csrf\CsrfMiddleware;
 
 class HomePageHandler implements RequestHandlerInterface
 {
@@ -34,7 +34,7 @@ class HomePageHandler implements RequestHandlerInterface
     {
         $data = [];
 
-        /* $session = $this->sessionProvider->getSession($request);
+        $session = $this->sessionProvider->getSession($request);
         $ui = [
             'id' => 'e1d0939e89ca43f19548c8868c68c48c',
             'roles' => [1, 20, 30],
@@ -43,8 +43,8 @@ class HomePageHandler implements RequestHandlerInterface
         $session->set('counter', intval($session->get('counter', 0)) + 1);
 
         /** @var CsrfGuardInterface */
-        //$guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
-        // $_token = $guard->generateToken();
+        $guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
+        $_token = $guard->generateToken();
 
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */
