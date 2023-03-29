@@ -27,5 +27,5 @@ use Laminas\ConfigAggregator\ConfigAggregator;
 
 return [
     'debug'                        => true,
-    ConfigAggregator::ENABLE_CACHE => true,
+    ConfigAggregator::ENABLE_CACHE => true, //false default
 ];
