@@ -11,7 +11,7 @@ use Mezzio\Helper\ConfigProvider; //set some middlewareFactories in ServiceConta
 // To enable or disable caching, set the `ConfigAggregator::ENABLE_CACHE` boolean in
 // `config/autoload/local.php`.
 $cacheConfig = [
-    'config_cache_path' => 'cache/config-cache.php',
+    'config_cache_path' => __DIR__.'/cache/config-cache.php',
 ];
 
 //\Mezzio\Router\FastRouteRouter\ConfigProvider::class,  //remove from $aggregator[] 
