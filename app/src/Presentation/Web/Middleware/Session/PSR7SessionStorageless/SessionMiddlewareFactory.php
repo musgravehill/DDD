@@ -10,7 +10,7 @@ use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer;
 use Lcobucci\JWT\Signer\Key\InMemory;
-use PSR7Sessions\Storageless\Http\SessionMiddleware; 
+use PSR7Sessions\Storageless\Http\SessionMiddleware;
 //
 use Psr\Container\ContainerInterface;
 
@@ -28,7 +28,7 @@ class SessionMiddlewareFactory
                 InMemory::plainText($key)
             ),
             // Override the default `__Secure-slsession` which only works on HTTPS
-            SetCookie::create('slsession')
+            SetCookie::create('sss')
                 // Disable mandatory HTTPS
                 ->withSecure(false)
                 ->withHttpOnly(true)
