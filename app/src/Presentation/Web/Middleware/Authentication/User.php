@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Authentication;
+namespace Presentation\Web\Middleware\Authentication;
 
 /**
  * Default implementation of UserInterface.

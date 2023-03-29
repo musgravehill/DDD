@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Csrf;
+namespace Presentation\Web\Middleware\Csrf;
 
 class ConfigProvider
 {

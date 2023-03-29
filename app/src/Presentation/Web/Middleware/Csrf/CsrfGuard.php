@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Csrf;
+namespace Presentation\Web\Middleware\Csrf;
 
-use App\Session\SessionProviderInterface;
-use App\Session\SessionInterface;
+use Presentation\Web\Middleware\Session\SessionProviderInterface;
+use Presentation\Web\Middleware\Session\SessionInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 use function bin2hex;

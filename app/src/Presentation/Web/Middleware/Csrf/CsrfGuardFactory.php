@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Csrf;
+namespace Presentation\Web\Middleware\Csrf;
 
 use Psr\Http\Message\ServerRequestInterface;
-use App\Session\SessionProviderInterface;
+use Presentation\Web\Middleware\Session\SessionProviderInterface;
 use Psr\Container\ContainerInterface;
 
 class CsrfGuardFactory

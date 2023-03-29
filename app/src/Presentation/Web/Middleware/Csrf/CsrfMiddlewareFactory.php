@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Csrf;
+namespace Presentation\Web\Middleware\Csrf;
 
 use Psr\Container\ContainerInterface;
-use App\Csrf\CsrfGuardInterface;
+use Presentation\Web\Middleware\Csrf\CsrfGuardInterface;
 
 class CsrfMiddlewareFactory
 {
