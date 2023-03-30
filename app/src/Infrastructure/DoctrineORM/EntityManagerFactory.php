@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoctrineORM\Service;
+namespace Infrastructure\DoctrineORM;
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Configuration;
@@ -13,7 +13,6 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
 
 use Psr\Container\ContainerInterface;
-
 
 class EntityManagerFactory
 {
@@ -60,11 +59,11 @@ class EntityManagerFactory
         $config = new Configuration;
 
         $config->setMetadataCache($metadataCache);
-        $driverImpl = new AttributeDriver([dirname(__DIR__, 1) . '/Entity']);
+        $driverImpl = new AttributeDriver([dirname(__DIR__, 2) . '/Domain/Entity']);
         $config->setMetadataDriverImpl($driverImpl);
         $config->setQueryCache($queryCache);
-        $config->setProxyDir(dirname(__DIR__, 1) . '/Proxy');
-        $config->setProxyNamespace('DoctrineORM\Proxy');
+        $config->setProxyDir(dirname(__DIR__) . '/Proxy');
+        $config->setProxyNamespace('Infrastructure\DoctrineORM\Proxy');
 
         if ($applicationMode == "development") {
             $config->setAutoGenerateProxyClasses(true);

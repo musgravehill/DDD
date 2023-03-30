@@ -41,8 +41,7 @@ services:
         container_name: mariadb_mezzio
         image: mariadb:10.11.2 
         networks:
-            - network_mezzio
-        restart: always
+            - network_mezzio        
         environment:
             MARIADB_ROOT_HOST: localhost
             MARIADB_ROOT_PASSWORD: 0000

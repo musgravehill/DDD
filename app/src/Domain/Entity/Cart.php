@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoctrineORM\Entity;
+namespace Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;

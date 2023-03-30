@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DoctrineORM;
+namespace Infrastructure\DoctrineORM;
 
 use Doctrine\ORM\EntityManager;
 
-class ConfigProvider  
+class ConfigProvider
 {
 
     public function __invoke(): array
@@ -20,7 +20,7 @@ class ConfigProvider
     {
         return [
             'factories'  => [
-                EntityManager::class => Service\EntityManagerFactory::class,
+                EntityManager::class => EntityManagerFactory::class,
             ],
         ];
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DoctrineORM\Service;
+namespace Infrastructure\DoctrineORM;
 
-require_once dirname(__DIR__, 4) . '/vendor/autoload.php'; //up * level
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php'; //up * level
 
-use DoctrineORM\Service\EntityManagerFactory;
+use Infrastructure\DoctrineORM\EntityManagerFactory;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 
