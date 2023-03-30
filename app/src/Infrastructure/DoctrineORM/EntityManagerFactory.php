@@ -38,6 +38,22 @@ class EntityManagerFactory
          *  If third argument `$proxyDir` is not set, use the systems temporary directory.
          */
 
+        /*
+         Обратите внимание, что кэш запросов не влияет на результаты запросов. 
+         Вы не получаете устаревшие данные. Это чистый кеш оптимизации без каких-либо негативных побочных эффектов
+         */
+
+        /*
+         Прокси-классы могут быть созданы либо вручную через консоль Doctrine, либо автоматически во время выполнения с помощью Doctrine. 
+         Никогда не создавайте прокси автоматически. 
+         Вам нужно будет сгенерировать прокси вручную, для этого используйте консоль Doctrine следующим образом:
+          myCLI.php  orm:generate-proxies
+         Когда вы делаете это в среде разработки, имейте в виду, что вы можете получить ошибки class/file not found, 
+         если определенные прокси еще не сгенерированы. Вы также можете столкнуться со сбоем отложенной загрузки, 
+         если в класс сущностей были добавлены новые методы, которых еще нет в прокси-классе. 
+         В таком случае просто используйте консоль Doctrine для (повторного) создания прокси-классов.
+         */
+
         $dbParams = [
             'dbname' => 'mezzio',
             'user' => 'mezzio',
@@ -62,7 +78,7 @@ class EntityManagerFactory
         $driverImpl = new AttributeDriver([dirname(__DIR__, 2) . '/Domain/Entity']);
         $config->setMetadataDriverImpl($driverImpl);
         $config->setQueryCache($queryCache);
-        $config->setProxyDir(dirname(__DIR__) . '/Proxy');
+        $config->setProxyDir(__DIR__ . '/Proxy');
         $config->setProxyNamespace('Infrastructure\DoctrineORM\Proxy');
 
         if ($applicationMode == "development") {

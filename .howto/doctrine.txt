@@ -15,6 +15,8 @@ cd /var/www/mezzio/app/src/Infrastructure/DoctrineORM
 php CLI.php orm:schema-tool:create
 php CLI.php orm:schema-tool:update --force
 
+php CLI.php orm:generate-proxies
+
 // TODO 
     // add rich-model functions for owner\inverse sides to control changes
     // advanced-configuration
