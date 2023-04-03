@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Attribute;
+namespace Infrastructure\EventAttribute;
 
 use ReflectionClass;
 
