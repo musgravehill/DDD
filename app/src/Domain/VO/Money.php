@@ -17,8 +17,7 @@ enum MoneyСurrency: int
 //#[Embeddable]
 final class Money extends AbstractValueObject implements InterfaceValueObject
 {
-    public readonly int $fractionalCount; //cent, kopek, céntimo, dinar    
-    /** @var MoneyСurrency */
+    public readonly int $fractionalCount; //cent, kopek, céntimo, dinar      
     public readonly MoneyСurrency $currency;
 
     public function __toString(): string
@@ -46,7 +45,7 @@ final class Money extends AbstractValueObject implements InterfaceValueObject
         if ($this->fractionalCount !== $vo->fractionalCount) {
             return false;
         }
-        if ($this->currency->value !== $vo->currency->value) { 
+        if ($this->currency->value !== $vo->currency->value) {
             return false;
         }
         return true;
