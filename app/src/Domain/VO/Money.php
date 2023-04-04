@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\VO;
 
-use Doctrine\ORM\Mapping\Embeddable; //? Domain depends on /vendor!  Is it OK?
+use Doctrine\ORM\Mapping\Embeddable; //? Domain depends on /vendor!  Is it OK? 
 use InvalidArgumentException;
 
 // ISO-4217
@@ -14,37 +14,52 @@ enum MoneyСurrency: int
     case USD = 840;
 }
 
-#[Embeddable]
-final class Money implements VOInterface
+//#[Embeddable]
+class Money extends AbstractValueObject implements InterfaceValueObject
 {
     private int $fractionalCount; //cent, kopek, céntimo, dinar    
-    private MoneyСurrency $currency;
+    private readonly MoneyСurrency $currency;
 
+    public function __toString(): string
+    {
+        return $this->fractionalCount . '_' . $this->currency->name;
+    }
+
+    public function getFractionalCount(): int
+    {
+        return $this->fractionalCount;
+    }
+
+    public function getCurrency(): MoneyСurrency
+    {
+        return $this->currency;
+    }
+
+    //self-validation
     public function __construct(int $fractionalCount, MoneyСurrency $currency)
     {
-
         if ($fractionalCount < 0) {
-            throw new \InvalidArgumentException('FractionalCount should be a positive value.');
+            throw new InvalidArgumentException('FractionalCount should be a positive value.');
         }
-
         if (!filter_var($fractionalCount, FILTER_VALIDATE_INT)) {
-            throw new \InvalidArgumentException('FractionalCount should be an INT.');
+            throw new InvalidArgumentException('FractionalCount should be an INT.');
         }
-
         $this->fractionalCount = $fractionalCount;
         $this->currency = $currency;
     }
 
-    public function isEqualsTo(VOInterface $vo): bool
+    private function isCurrencyEqualsTo(self $vo): bool
     {
-        $condition0 = (int) $this->fractionalCount === (int) $vo->fractionalCount;
-        $condition1 = $this->currency === $vo->currency;
-
-        return $condition0 && $condition1;
+        return $this->currency === $vo->currency;
     }
 
-    public function __toString(): string
+    //immutable
+    public function getSumWith(self $vo): self
     {
-        return $this->fractionalCount.'_'.$this->currency->name;
+        if (!$this->isCurrencyEqualsTo($vo)) {
+            throw new InvalidArgumentException('You must sum the same currencies.');
+        }
+
+        return new self(fractionalCount: ($this->fractionalCount + $vo->fractionalCount), currency: $this->currency);
     }
 }
