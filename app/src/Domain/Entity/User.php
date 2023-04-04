@@ -7,6 +7,7 @@ namespace Domain\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Embedded;
 use Doctrine\ORM\Mapping\InverseJoinColumn;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
@@ -14,7 +15,9 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
-use DoctrineORM\DTO\UserCreateByEmailPassDTO;
+
+use Domain\VO\Email;
+use Domain\VO\Money;
 
 enum UserGender: string
 {
@@ -35,10 +38,11 @@ class User
     #[ORM\Column(type: 'string', enumType: UserGender::class)]
     private UserGender $gender = UserGender::Luntik;
 
-    #[ORM\Column(type: 'string', name: 'auth_email', unique: true, length: 64)]
-    private string $authEmail;
+    /*#[ORM\Column(type: 'object', name: 'auth_email', unique: true)]*/
+    #[Embedded(class: Email::class)]
+    private Email $authEmail;
 
-    #[ORM\Column(type: 'string', name: 'auth_phone', unique: true, length: 16)]
+    #[ORM\Column(type: 'string', name: 'auth_phone', unique: true)]
     private string $authPhone;
 
     #[ORM\Column(type: 'string', name: 'pass_hash', length: 128)]
@@ -46,6 +50,9 @@ class User
 
     #[ORM\Column(type: 'text', name: 'about_me', length: 65000)]
     private string $aboutMe = '';
+
+    #[ORM\Column(type: 'object', name: 'amount')]
+    private Money $amount;
 
     /** ManyToMany:bi Many users have many interests */
     /** Owner side */
@@ -91,24 +98,25 @@ class User
 
     /** Setters\Getters */
 
-    public function setAuthEmail($authEmail): void
+    public function setAuthEmail(Email $email): void
     {
-        $this->authEmail = $authEmail;
+        $this->authEmail = $email;
     }
-
     public function setPassHash($passHash): void
     {
         $this->passHash = $passHash;
     }
-
     public function setAuthPhone($authPhone): void
     {
         $this->authPhone = $authPhone;
     }
+    public function setAmount(Money $amount): void
+    {
+        $this->amount = $amount;
+    }
 
 
-
-    //todo check it
+    //////
     public function getGender(): UserGender
     {
         return $this->gender;
@@ -117,6 +125,18 @@ class User
     {
         return $this->id;
     }
+    public function getAuthEmail(): Email
+    {
+        return $this->authEmail;
+    }
+    public function getAmount(): Money
+    {
+        return $this->amount;
+    }
+
+
+    //todo check it
+
     public function removeFriend(User $user): void
     {
         $this->myFriends->removeElement($user);

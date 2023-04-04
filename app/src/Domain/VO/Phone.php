@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\VO;
 
-//use Doctrine\ORM\Mapping\Embeddable; //? Domain depends on /vendor!  Is it OK? 
 use InvalidArgumentException;
 
-//#[Embeddable]
 final class Phone extends AbstractValueObject implements InterfaceValueObject
 {
     public readonly string $phone; //country code + area code + number + additional digits 

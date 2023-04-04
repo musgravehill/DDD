@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Domain\VO;
 
-//use Doctrine\ORM\Mapping\Embeddable; //? Domain depends on /vendor!  Is it OK? 
+use Doctrine\ORM\Mapping\Embeddable;
+use Doctrine\ORM\Mapping as ORM;
+
 use InvalidArgumentException;
 
-//#[Embeddable]
+#[Embeddable]
 final class Email extends AbstractValueObject implements InterfaceValueObject
 {
+    #[ORM\Column(type: 'string', name: 'email', unique: true)]
     public readonly string $email;
 
     public function __toString(): string

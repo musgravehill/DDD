@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\VO;
 
-//use Doctrine\ORM\Mapping\Embeddable; //? Domain depends on /vendor!  Is it OK? 
 use InvalidArgumentException;
 
 // ISO-4217
@@ -14,7 +13,6 @@ enum MoneyСurrency: int
     case USD = 840;
 }
 
-//#[Embeddable]
 final class Money extends AbstractValueObject implements InterfaceValueObject
 {
     public readonly int $fractionalCount; //cent, kopek, céntimo, dinar      

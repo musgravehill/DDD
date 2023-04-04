@@ -38,14 +38,15 @@ $aggregator = new ConfigAggregator([
             return [];
         },
 
-    Presentation\Web\Middleware\Session\ConfigProvider::class,
-    Presentation\Web\Middleware\Csrf\ConfigProvider::class,
-    Presentation\Web\Middleware\Authentication\ConfigProvider::class,
+    \Presentation\Web\Middleware\Session\ConfigProvider::class,
+    \Presentation\Web\Middleware\Csrf\ConfigProvider::class,
+    \Presentation\Web\Middleware\Authentication\ConfigProvider::class,
 
-    Presentation\Web\Handler\Sys\ConfigProvider::class,
-    Presentation\Web\Handler\Home\ConfigProvider::class,    
+    \Presentation\Web\Handler\Sys\ConfigProvider::class,
+    \Presentation\Web\Handler\Home\ConfigProvider::class,    
 
-    //  DoctrineORM\ConfigProvider::class, 
+    \Infrastructure\DoctrineORM\ConfigProvider::class, 
+    
 
     // Load application config in a pre-defined order in such a way that local settings
     // overwrite global settings. (Loaded as first to last):
