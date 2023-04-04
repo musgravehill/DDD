@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\VO;
 
-use Doctrine\ORM\Mapping\Embeddable; //? Domain depends on /vendor!  Is it OK? 
+//use Doctrine\ORM\Mapping\Embeddable; //? Domain depends on /vendor!  Is it OK? 
 use InvalidArgumentException;
 
 // ISO-4217
@@ -15,24 +15,15 @@ enum MoneyСurrency: int
 }
 
 //#[Embeddable]
-class Money extends AbstractValueObject implements InterfaceValueObject
+final class Money extends AbstractValueObject implements InterfaceValueObject
 {
-    private int $fractionalCount; //cent, kopek, céntimo, dinar    
-    private readonly MoneyСurrency $currency;
+    public readonly int $fractionalCount; //cent, kopek, céntimo, dinar    
+    /** @var MoneyСurrency */
+    public readonly MoneyСurrency $currency;
 
     public function __toString(): string
     {
-        return $this->fractionalCount . '_' . $this->currency->name;
-    }
-
-    public function getFractionalCount(): int
-    {
-        return $this->fractionalCount;
-    }
-
-    public function getCurrency(): MoneyСurrency
-    {
-        return $this->currency;
+        return $this->fractionalCount . ' fractional of ' . $this->currency->name;
     }
 
     //self-validation
@@ -48,9 +39,17 @@ class Money extends AbstractValueObject implements InterfaceValueObject
         $this->currency = $currency;
     }
 
-    private function isCurrencyEqualsTo(self $vo): bool
+    //structural equality, compare
+    public function isEqualsTo(InterfaceValueObject $vo): bool
     {
-        return $this->currency === $vo->currency;
+        parent::isEqualsTo($vo);
+        if ($this->fractionalCount !== $vo->fractionalCount) {
+            return false;
+        }
+        if ($this->currency->value !== $vo->currency->value) { 
+            return false;
+        }
+        return true;
     }
 
     //immutable
@@ -61,5 +60,9 @@ class Money extends AbstractValueObject implements InterfaceValueObject
         }
 
         return new self(fractionalCount: ($this->fractionalCount + $vo->fractionalCount), currency: $this->currency);
+    }
+    private function isCurrencyEqualsTo(self $vo): bool
+    {
+        return $this->currency === $vo->currency;
     }
 }

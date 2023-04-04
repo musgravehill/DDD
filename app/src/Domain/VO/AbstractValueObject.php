@@ -14,13 +14,9 @@ abstract class AbstractValueObject
         if (get_class($this) !== get_class($vo)) {
             throw new InvalidArgumentException('Objects of different classes.');
         }
-        $reflection = new \ReflectionClass(self::class);
-        foreach ($reflection->getProperties() as $property) {
-            $name = $property->getName();
-            if ($this->$name !== $vo->$name) {
-                return false;
-            }
-        }
+        //It can NOT compare 2 object with plain Reflections::properties because some VO has objects\Enum as property
+        // $foo->name === $bar->name
+        // $foo->colorEnum === $bar->colorEnum no way! 
         return true;
     }
 }
