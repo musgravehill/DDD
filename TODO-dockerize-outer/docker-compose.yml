@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+    api-nginx:
+        restart: unless-stopped 
+        build:
+            context: ../api
+            dockerfile: docker/dev/nginx/Dockerfile
+        ports:
+            - "80:80"
+        networks:
+            - network_wheretobuy_api        
+        volumes:
+            - ./mezzio:/var/www/wheretobuy_api                       
+        
+    api-backend:
+        #nginx listen   api-backend:9000   
+        restart: unless-stopped
+        build:
+            args:
+                - arg_user=wheretobuy
+                - arg_uid=1000
+                - arg_gid=1000
+            context: ../api
+            dockerfile: docker/dev/php/Dockerfile
+        #container_name: php_wheretobuy_api
+        #image: php_wheretobuy_api
+        volumes:
+            - ../api/mezzio:/var/www/wheretobuy_api #see rootDir ./docker-conf/nginxSites.confs             
+        networks:
+            - network_wheretobuy_api
+        #entrypoint: /var/www/wheretobuy_api/docker-entrypoint.sh
+        #docker-entrypoint.sh ==> cd /var/www/mezzio && composer update  
+        #May be better: docker-compose exec php_wheretobuy_api    composer install/update?
+        #extra_hosts:               
+            #- "tt.ru:host-gateway"  #for tt.ru/API/     
+
+networks:
+    network_wheretobuy_api:
+        driver: bridge
