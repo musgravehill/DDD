@@ -11,6 +11,7 @@ ENV env_app_workdir = /var/www
 RUN useradd -G www-data,root -u $arg_uid -d /home/$arg_user $arg_user
 RUN mkdir -p /home/$arg_user/ && \
     chown -R $arg_user:$arg_user /home/$arg_user 
+  
 
 # Install system dependencies   -y=autoYES
 RUN apt-get update && apt-get install -y \
@@ -34,7 +35,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR ${env_app_workdir}
 
-COPY docker/dev/docker-entrypoint.sh docker/dev/docker-entrypoint.sh
-ENTRYPOINT ["docker/dev/docker-entrypoint.sh"]
+#COPY ./docker/dev/docker-entrypoint.sh /var/www/ddd/docker/dev/docker-entrypoint.sh
+#RUN chmod +x /var/www/ddd/docker/dev/docker-entrypoint.sh  
+#ENTRYPOINT ["/var/www/ddd/docker/dev/docker-entrypoint.sh"]
 
 USER ${arg_user}
