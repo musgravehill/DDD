@@ -3,12 +3,10 @@
 vscode docker mariadb_mezzio "Attach shell"
 terminal:
 
-mysqldump -u mezzio -pmezziopass mezzio | gzip > /var/mezzio.sql.gz   THEN see in VScode file-tree, download file 
+mysqldump -u uddd -ppddd ddd | gzip > /var/ddd.sql.gz   THEN see in VScode file-tree, download file 
 
 
 ====MARIADB IMPORT DUMP.SQL==============================================================================
-docker exec -i mariadb_msd sh -c 'exec mysql -umezzio -pmezziopass mezzio' < /home/bob/DEV/www/mezzio.sql
-
 docker exec -i service_mariadb_name sh -c 'exec mysql -uSOMEUSER -pSOMEPASS DBNAME' < /home/bob/DEV/www/mezzio.sql
 
  

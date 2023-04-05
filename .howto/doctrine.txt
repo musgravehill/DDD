@@ -1,7 +1,7 @@
 edit composer.json
 run docker
 connect to docker, attach shell 
-  cd /var/www/mezzio/app && composer update
+  cd /var/www/ddd && composer update
 
 
 // DoctrineORM\Service\EntityManagerFactory generate $em. See at DoctrineORM\ConfigProvider
@@ -9,14 +9,11 @@ connect to docker, attach shell
 $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class); 
 
 
-cd /var/www/mezzio/app/src/Infrastructure/DoctrineORM && php CLI.php 
+cd /var/www/ddd/src/Infrastructure/DoctrineORM && php CLI.php 
 
-cd /var/www/mezzio/app/src/Infrastructure/DoctrineORM 
+cd /var/www/ddd/src/Infrastructure/DoctrineORM 
 php CLI.php orm:schema-tool:create
 php CLI.php orm:schema-tool:update --force
 
 php CLI.php orm:generate-proxies
-
-// TODO 
-    // add rich-model functions for owner\inverse sides to control changes
-    // advanced-configuration
+ 
