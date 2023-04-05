@@ -20,10 +20,6 @@ use Psr\Container\ContainerInterface;
 use Presentation\Web\Middleware\Session\SessionProviderInterface;
 use Presentation\Web\Middleware\Csrf\CsrfMiddleware;
 
-use Domain\Entity\User;
-use Domain\VO\Email;
-use Domain\VO\Money;
-
 class HomePageHandler implements RequestHandlerInterface
 {
     public function __construct(
@@ -56,21 +52,22 @@ class HomePageHandler implements RequestHandlerInterface
         /** @var \Doctrine\ORM\EntityManager $entityManager */
         $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
         /*
-        $userA = new User();
-        $userA->setAuthEmail(new Email(rand(1, 99999999) . '@mail.ru'));
+        $userA = new \Infrastructure\DoctrineORM\Entity\User();
+        $userA->setAuthEmail(rand(1, 99999999) . '@mail.ru');
         $userA->setAuthPhone('79158887645');
         $userA->setPassHash('=22222222=');
-        $userA->setAmount(new Money(10000, \Domain\VO\MoneyСurrency::RUB));
+        $userA->setAmount(10000);
         $entityManager->persist($userA);
         $entityManager->flush(); */
 
-        /** @var User */
-        $me = $entityManager->find("Domain\Entity\User", 1);
+        /** @var \Infrastructure\DoctrineORM\Entity\User */
+        $me = $entityManager->find("Infrastructure\DoctrineORM\Entity\User", 1);
         return new HtmlResponse(
             (string) $me->getAuthEmail() . '___' .
                 print_r($me->getGender(), true) . '___' .
                 print_r($me->getAmount(), true) . '___'
         );
+        
         /*
         $myF = $entityManager->find("DoctrineORM\Entity\User", 2);
         $me->addFriend($myF);
