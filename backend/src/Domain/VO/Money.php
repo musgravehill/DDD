@@ -6,13 +6,6 @@ namespace Domain\VO;
 
 use InvalidArgumentException;
 
-// ISO-4217
-enum MoneyСurrency: int
-{
-    case RUB = 643;
-    case USD = 840;
-}
-
 final class Money extends AbstractValueObject implements InterfaceValueObject
 {
     public readonly int $fractionalCount; //cent, kopek, céntimo, dinar      
