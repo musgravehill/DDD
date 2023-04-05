@@ -1,40 +1,54 @@
 version: '3.9'
 
 services:
-    backend-nginx:
-        restart: unless-stopped 
+    ddd-backend-nginx:
+        restart: no
         build:
             context: ../backend
             dockerfile: docker/dev/nginx/Dockerfile
         ports:
             - "80:80"
         networks:
-            - network_ddd_backend       
+            - ddd-backend-network
         volumes:
-            - .:/var/www/ddd                       
-        
-    backend-php:
-        #nginx listen   api-backend:9000   
-        restart: unless-stopped
+            - .:/var/www/ddd
+
+    ddd-backend-php:
+        #nginx listen ddd-backend-php:9000   
+        restart: no
         build:
             args:
-                - arg_user=wheretobuy
+                - arg_user=ddd
                 - arg_uid=1000
                 - arg_gid=1000
-            context: ../api
+            context: ../backend
             dockerfile: docker/dev/php/Dockerfile
-        #container_name: php_wheretobuy_api
-        #image: php_wheretobuy_api
         volumes:
-            - ../api/mezzio:/var/www/wheretobuy_api #see rootDir ./docker-conf/nginxSites.confs             
+            - .:/var/www/ddd
         networks:
-            - network_ddd_backend
-        #entrypoint: /var/www/wheretobuy_api/docker-entrypoint.sh
-        #docker-entrypoint.sh ==> cd /var/www/mezzio && composer update  
-        #May be better: docker-compose exec php_wheretobuy_api    composer install/update?
-        #extra_hosts:               
-            #- "tt.ru:host-gateway"  #for tt.ru/API/     
+            - ddd-backend-network
+
+    ddd-backend-mariadb: #configDB.php host=ddd-backend-mariadb, NOT localhost!          
+        restart: no
+        build:            
+            context: ../backend
+            dockerfile: docker/dev/mariadb/Dockerfile               
+        environment:
+            MARIADB_ROOT_HOST: localhost
+            MARIADB_ROOT_PASSWORD: 0000
+            MARIADB_USER: uddd
+            MARIADB_PASSWORD: pddd    
+            MARIADB_DATABASE: ddd          
+        volumes:
+            - ddd-backend-mariadb-volume:/var/lib/mysql #named volume - persistent, does not disappear after docker-compose down
+        ports:
+            - "3306:3306"         
+        networks:
+            - ddd-backend-network        
 
 networks:
-    network_ddd_backend:
+    ddd-backend-network:
         driver: bridge
+
+volumes:
+    ddd-backend-mariadb-volume: #named volume - persistent, does not disappear after docker-compose down        
