@@ -19,4 +19,14 @@ abstract class AbstractValueObject
         // $foo->colorEnum === $bar->colorEnum no way! 
         return true;
     }
+
+    /*
+    public static function fromFoobar($foobar)
+    {
+        return new self($foobar);   //static vs. self
+                                    //Using static over self can result in undesirable issues 
+                                    //when a Value Object inherits from
+                                    //another Value Object.
+    }
+    */
 }

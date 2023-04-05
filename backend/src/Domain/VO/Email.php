@@ -12,7 +12,7 @@ final class Email extends AbstractValueObject implements InterfaceValueObject
 
     public function __toString(): string
     {
-        return $this->email;
+        return (string) $this->email;
     }
 
     //self-validation

@@ -12,7 +12,7 @@ final class Phone extends AbstractValueObject implements InterfaceValueObject
 
     public function __toString(): string
     {
-        return $this->phone;
+        return (string) $this->phone;
     }
 
     //self-validation

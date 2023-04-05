@@ -13,7 +13,7 @@ final class Money extends AbstractValueObject implements InterfaceValueObject
 
     public function __toString(): string
     {
-        return $this->fractionalCount . ' fractional of ' . $this->currency->name;
+        return (string) $this->fractionalCount . ' fractional of ' . $this->currency->name;
     }
 
     //self-validation
