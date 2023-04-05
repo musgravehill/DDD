@@ -55,14 +55,14 @@ class HomePageHandler implements RequestHandlerInterface
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */
         $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
-
+        /*
         $userA = new User();
         $userA->setAuthEmail(new Email(rand(1, 99999999) . '@mail.ru'));
         $userA->setAuthPhone('79158887645');
         $userA->setPassHash('=22222222=');
         $userA->setAmount(new Money(10000, \Domain\VO\MoneyСurrency::RUB));
         $entityManager->persist($userA);
-        $entityManager->flush();
+        $entityManager->flush(); */
 
         /** @var User */
         $me = $entityManager->find("Domain\Entity\User", 1);

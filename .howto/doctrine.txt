@@ -9,7 +9,7 @@ connect to docker, attach shell
 $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class); 
 
 
-cd /var/www/ddd/src/Infrastructure/DoctrineORM && php CLI.php 
+cd /var/www/ddd/src/Infrastructure/DoctrineORM && php CLI.php orm:schema-tool:update --force
 
 cd /var/www/ddd/src/Infrastructure/DoctrineORM 
 php CLI.php orm:schema-tool:create

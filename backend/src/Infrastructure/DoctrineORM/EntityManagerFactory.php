@@ -75,7 +75,7 @@ class EntityManagerFactory
         $config = new Configuration;
 
         $config->setMetadataCache($metadataCache);
-        $driverImpl = new AttributeDriver([dirname(__DIR__, 2) . '/Domain/Entity']);
+        $driverImpl = new AttributeDriver([__DIR__ . '/Entity']);
         $config->setMetadataDriverImpl($driverImpl);
         $config->setQueryCache($queryCache);
         $config->setProxyDir(__DIR__ . '/Proxy');
