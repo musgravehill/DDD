@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 final class IdEntity extends AbstractValueObject implements InterfaceValueObject
 {
-    public readonly int $id;
+    public readonly string $id;
 
     public function __toString(): string
     {
@@ -16,14 +16,12 @@ final class IdEntity extends AbstractValueObject implements InterfaceValueObject
     }
 
     //self-validation
-    public function __construct(int $id)
+    public function __construct(string $id)
     {
-        if ($id < 0) {
-            throw new InvalidArgumentException('id should be a positive value.');
+        if (strlen($id) <= 0) {
+            throw new InvalidArgumentException('id should be a not empty string.');
         }
-        if (!filter_var($id, FILTER_VALIDATE_INT)) {
-            throw new InvalidArgumentException('id should be an INT.');
-        }
+
 
         $this->id = (int) $id;
     }
