@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
     ddd-backend-nginx:
-        restart: no
+        restart: "no"
         build:
             context: ../backend
             dockerfile: docker/dev/nginx/Dockerfile
@@ -15,7 +15,7 @@ services:
 
     ddd-backend-php:
         #nginx listen ddd-backend-php:9000   
-        restart: no
+        restart: "no"
         build:
             args:
                 - arg_user=ddd
@@ -29,7 +29,7 @@ services:
             - ddd-backend-network
 
     ddd-backend-mariadb: #configDB.php host=ddd-backend-mariadb, NOT localhost!          
-        restart: no
+        restart: "no"
         build:            
             context: ../backend
             dockerfile: docker/dev/mariadb/Dockerfile               
