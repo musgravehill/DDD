@@ -86,8 +86,7 @@ class User
         $this->myFriends = new ArrayCollection();
     }
 
-    /** Setters\Getters */
-
+    /** Setters\Getters */    
     public function setAuthEmail(string $email): void
     {
         $this->authEmail = $email;

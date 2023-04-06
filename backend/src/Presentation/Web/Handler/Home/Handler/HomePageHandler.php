@@ -51,23 +51,24 @@ class HomePageHandler implements RequestHandlerInterface
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */
         $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
-        /*
-        $userA = new \Infrastructure\DoctrineORM\Entity\User();
+
+        /*$userA = new \Infrastructure\DoctrineORM\Entity\User();
         $userA->setAuthEmail(rand(1, 99999999) . '@mail.ru');
-        $userA->setAuthPhone('79158887645');
+        $userA->setAuthPhone('79158887647');
         $userA->setPassHash('=22222222=');
-        $userA->setAmount(10000);
+        $userA->setAmount(10000);        
         $entityManager->persist($userA);
-        $entityManager->flush(); */
+        $entityManager->flush(); 
+        */
 
         /** @var \Infrastructure\DoctrineORM\Entity\User */
-        $me = $entityManager->find("Infrastructure\DoctrineORM\Entity\User", 1);
+        $me = $entityManager->find("Infrastructure\DoctrineORM\Entity\User", 3);
         return new HtmlResponse(
             (string) $me->getAuthEmail() . '___' .
                 print_r($me->getGender(), true) . '___' .
                 print_r($me->getAmount(), true) . '___'
         );
-        
+
         /*
         $myF = $entityManager->find("DoctrineORM\Entity\User", 2);
         $me->addFriend($myF);
