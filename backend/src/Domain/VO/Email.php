@@ -6,7 +6,7 @@ namespace Domain\VO;
 
 use InvalidArgumentException;
 
-final class Email extends AbstractValueObject implements InterfaceValueObject
+final class Email extends ValueObjectAbstract implements ValueObjectInterface
 {
     public readonly string $email;
 
@@ -26,7 +26,7 @@ final class Email extends AbstractValueObject implements InterfaceValueObject
     }
 
     //structural equality, compare
-    public function isEqualsTo(InterfaceValueObject $vo): bool
+    public function isEqualsTo(ValueObjectInterface $vo): bool
     {
         parent::isEqualsTo($vo);
         if ($this->email !== $vo->email) {

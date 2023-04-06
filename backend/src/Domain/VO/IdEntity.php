@@ -6,7 +6,7 @@ namespace Domain\VO;
 
 use InvalidArgumentException;
 
-final class IdEntity extends AbstractValueObject implements InterfaceValueObject
+final class IdEntityString  implements IdEntityInterface
 {
     public readonly string $id;
 
@@ -19,17 +19,15 @@ final class IdEntity extends AbstractValueObject implements InterfaceValueObject
     public function __construct(string $id)
     {
         if (strlen($id) <= 0) {
-            throw new InvalidArgumentException('id should be a not empty string.');
+            throw new InvalidArgumentException('Id should be a not empty string.');
         }
 
-
-        $this->id = (int) $id;
+        $this->id = (string) $id;
     }
 
     //structural equality, compare
-    public function isEqualsTo(InterfaceValueObject $vo): bool
+    public function isEqualsTo(IdEntityInterface $vo): bool
     {
-        parent::isEqualsTo($vo);
         if ($this->id !== $vo->id) {
             return false;
         }

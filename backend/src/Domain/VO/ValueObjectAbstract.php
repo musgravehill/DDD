@@ -6,10 +6,10 @@ namespace Domain\VO;
 
 use InvalidArgumentException;
 
-abstract class AbstractValueObject
+abstract class ValueObjectAbstract 
 {
     //structural equality, compare
-    public function isEqualsTo(InterfaceValueObject $vo): bool
+    public function isEqualsTo(ValueObjectInterface $vo): bool
     {
         if (get_class($this) !== get_class($vo)) {
             throw new InvalidArgumentException('Objects of different classes.');

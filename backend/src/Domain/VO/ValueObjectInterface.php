@@ -7,9 +7,9 @@ namespace Domain\VO;
 //use Doctrine\ORM\Mapping\Embeddable;  #[Embeddable]
 //use Psalm/Immutable;                  #[Immutable]
 
-interface InterfaceValueObject
+interface ValueObjectInterface
 {
-    public function isEqualsTo(InterfaceValueObject $vo): bool;
+    public function isEqualsTo(ValueObjectInterface $vo): bool;
     public function __toString(): string;
 }
 

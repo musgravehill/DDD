@@ -6,7 +6,7 @@ namespace Domain\VO;
 
 use InvalidArgumentException;
 
-final class Money extends AbstractValueObject implements InterfaceValueObject
+final class Money extends ValueObjectAbstract implements ValueObjectInterface
 {
     public readonly int $fractionalCount; //cent, kopek, céntimo, dinar      
     public readonly MoneyСurrency $currency;
@@ -30,7 +30,7 @@ final class Money extends AbstractValueObject implements InterfaceValueObject
     }
 
     //structural equality, compare
-    public function isEqualsTo(InterfaceValueObject $vo): bool
+    public function isEqualsTo(ValueObjectInterface $vo): bool
     {
         parent::isEqualsTo($vo);
         if ($this->fractionalCount !== $vo->fractionalCount) {

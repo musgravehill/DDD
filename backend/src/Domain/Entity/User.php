@@ -6,11 +6,11 @@ namespace Domain\Entity;
 
 use Domain\VO\Email;
 use Domain\VO\Money;
-use Domain\VO\IdEntity;
+use Domain\VO\IdEntityInterface;
 
 class User
 {
-    private ?IdEntity $id = null;
+    private ?IdEntityInterface $id = null;
     private UserGender $gender = UserGender::Luntik;
     private Email $authEmail;
     private string $authPhone;

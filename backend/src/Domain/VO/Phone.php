@@ -6,7 +6,7 @@ namespace Domain\VO;
 
 use InvalidArgumentException;
 
-final class Phone extends AbstractValueObject implements InterfaceValueObject
+final class Phone extends ValueObjectAbstract implements ValueObjectInterface
 {
     public readonly string $phone; //country code + area code + number + additional digits 
 
@@ -25,7 +25,7 @@ final class Phone extends AbstractValueObject implements InterfaceValueObject
     }
 
     //structural equality, compare
-    public function isEqualsTo(InterfaceValueObject $vo): bool
+    public function isEqualsTo(ValueObjectInterface $vo): bool
     {
         parent::isEqualsTo($vo);
         if ($this->phone !== $vo->phone) {
