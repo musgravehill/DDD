@@ -45,7 +45,21 @@ services:
         ports:
             - "3306:3306"         
         networks:
-            - ddd-backend-network        
+            - ddd-backend-network   
+
+    ddd-backend-phpmyadmin:
+        depends_on:
+            - ddd-backend-mariadb
+        image: phpmyadmin
+        restart: "no"        
+        ports:
+            - 8080:80
+        environment:
+            - PMA_PORT=3306
+            - PMA_ARBITRARY=1  
+            - PMA_HOST=ddd-backend-mariadb   
+        networks:
+            - ddd-backend-network            
 
 networks:
     ddd-backend-network:
