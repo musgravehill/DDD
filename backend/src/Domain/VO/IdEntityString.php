@@ -8,21 +8,16 @@ use InvalidArgumentException;
 
 final class IdEntityString  implements IdEntityInterface
 {
-    public readonly string $id;
-
-    public function __toString(): string
-    {
-        return (string) $this->id;
-    }
+    public readonly ?string $id;
 
     //self-validation
-    public function __construct(string $id)
+    public function __construct(?string $id)
     {
-        if (strlen($id) <= 0) {
-            throw new InvalidArgumentException('Id should be a not empty string.');
+        if (!is_null($id) && strlen($id) <= 0) {
+            throw new InvalidArgumentException('Id should be a not empty string or Null.');
         }
 
-        $this->id = (string) $id;
+        $this->id = $id;
     }
 
     //structural equality, compare
