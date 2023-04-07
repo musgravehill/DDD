@@ -7,10 +7,11 @@ namespace Domain\Model\Entity;
 use Domain\Model\VO\Email;
 use Domain\Model\VO\Money;
 use Domain\Model\VO\IdEntityInterface;
+use Domain\Model\Enum\UserGender;
 
 class User
 {
-    private ?IdEntityInterface $id = null;
+    private IdEntityInterface $id;
     private UserGender $gender = UserGender::Luntik;
     private Email $authEmail;
     private string $authPhone;
