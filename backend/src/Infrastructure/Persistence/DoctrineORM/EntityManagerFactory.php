@@ -54,8 +54,6 @@ class EntityManagerFactory
          В таком случае просто используйте консоль Doctrine для (повторного) создания прокси-классов.
          */
 
-        \Doctrine\DBAL\Types\Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
-
         $dbParams = [
             'dbname' => 'ddd',
             'user' => 'uddd',
