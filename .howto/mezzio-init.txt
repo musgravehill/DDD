@@ -8,7 +8,7 @@ cd /var/www/ddd && chmod -R 777 /var/www/ddd
 cd /var/www/ddd && composer self-update
 cd /var/www/ddd && composer create-project mezzio-skeleton mezzio
 
-
+cd /var/www/ddd && composer require ramsey/uuid-doctrine
 
 modular
 laminas-servicemanager
