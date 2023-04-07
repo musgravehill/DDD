@@ -49,6 +49,9 @@ class HomePageHandler implements RequestHandlerInterface
 
         //return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);
 
+        $UserInteractor = new  \Domain\Interactor\UserInteractor($this->container);
+        $UserInteractor->in();
+
         /*
         $UserRepository = new \Infrastructure\Persistence\DoctrineORM\Repository\UserRepository();
         $u_0 = $UserRepository->nextId();
@@ -78,7 +81,7 @@ class HomePageHandler implements RequestHandlerInterface
         $entityManager->persist($userA);
         $entityManager->flush(); 
         */
-        
+
 
         /** @var \Infrastructure\DoctrineORM\Entity\User */
         $me = $entityManager->find(\Infrastructure\Persistence\DoctrineORM\Entity\User::class, '01875b85-f423-70ae-a08f-d052f8c84628');
