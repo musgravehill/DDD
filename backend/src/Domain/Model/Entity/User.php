@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Entity;
+namespace Domain\Model\Entity;
 
-use Domain\VO\Email;
-use Domain\VO\Money;
-use Domain\VO\IdEntityInterface;
+use Domain\Model\VO\Email;
+use Domain\Model\VO\Money;
+use Domain\Model\VO\IdEntityInterface;
 
 class User
 {

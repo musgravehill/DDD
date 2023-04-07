@@ -2,13 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Domain\VO;
+namespace Domain\Model\VO;
 
 use InvalidArgumentException;
 
-final class IdEntityString  implements IdEntityInterface
+final class IdEntityUUID  implements IdEntityInterface
 {
     public readonly ?string $id;
+
+    public function __toString(): string
+    {
+        return (string) $this->id;
+    }
 
     //self-validation
     public function __construct(?string $id)

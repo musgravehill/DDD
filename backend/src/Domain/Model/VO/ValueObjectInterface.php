@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\VO;
+namespace Domain\Model\VO;
 
 //use Doctrine\ORM\Mapping\Embeddable;  #[Embeddable]
 //use Psalm/Immutable;                  #[Immutable]

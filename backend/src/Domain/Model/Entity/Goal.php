@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Entity;
+namespace Domain\Model\Entity;
 
 class Goal
 {
