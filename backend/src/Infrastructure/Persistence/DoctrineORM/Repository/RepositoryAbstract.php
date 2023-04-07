@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Persistence\Repository;
+namespace Infrastructure\Persistence\DoctrineORM\Repository;
 
 use Domain\Model\VO\IdEntityInterface;
 use Domain\Persistence\Repository\RepositoryInterface;

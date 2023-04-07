@@ -9,6 +9,14 @@ use Domain\Model\VO\IdEntityInterface;
 interface RepositoryInterface
 {
     /*
+        =Domain=
+            Uses the concept of ID (IdInterface)
+            The specific implementation and what is inside the ID does not matter.
+
+        =Infrastructure:Repository=
+        Decides what the ID class will be and what it contains inside.
+    */
+    /*
         1. Easier testing; injecting the ID as a dependency allows you to create the entity in a known state
         2. Injecting the ID allows the repository to recreate an entity from storage
         3. Injecting the ID allows for easy switching between generators. v4 UUID v5 
