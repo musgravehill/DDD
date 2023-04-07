@@ -26,7 +26,7 @@ class User
     #[ORM\GeneratedValue(strategy: "NONE")]
     private $id;
 
-    #[ORM\Column(type: 'string', enumType: UserGender::class)]
+    #[ORM\Column(type: 'integer', enumType: UserGender::class)]
     private UserGender $gender = UserGender::Luntik;
 
     #[ORM\Column(type: 'string', name: 'auth_email', unique: true, length: 64)]

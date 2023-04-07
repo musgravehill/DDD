@@ -65,7 +65,6 @@ class HomePageHandler implements RequestHandlerInterface
         );
         */
 
-
         /** @var \Doctrine\ORM\EntityManager $entityManager */
         $entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class);
         /*
@@ -82,7 +81,7 @@ class HomePageHandler implements RequestHandlerInterface
         
 
         /** @var \Infrastructure\DoctrineORM\Entity\User */
-        $me = $entityManager->find(\Infrastructure\Persistence\DoctrineORM\Entity\User::class, '01875b4e-545b-727e-818b-5718780fc74e');
+        $me = $entityManager->find(\Infrastructure\Persistence\DoctrineORM\Entity\User::class, '01875b85-f423-70ae-a08f-d052f8c84628');
         return new HtmlResponse(
             (string) $me->getAuthEmail() . '___' .
                 print_r($me->getGender(), true) . '___' .
