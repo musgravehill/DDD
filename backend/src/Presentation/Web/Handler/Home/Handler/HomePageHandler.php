@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Presentation\Web\Handler\Home\Handler;
 
+
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\ServiceManager\ServiceManager;
@@ -47,6 +48,24 @@ class HomePageHandler implements RequestHandlerInterface
         $_token = $guard->generateToken();
 
         //return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);
+
+
+        $UserRepository = new \Infrastructure\Persistence\DoctrineORM\Repository\UserRepository();
+        $u_0 = $UserRepository->nextId();
+        $u_1 = $UserRepository->nextId();
+        $u_3 = new \Infrastructure\Persistence\DoctrineORM\Repository\IdEntityUuid7('01875aec-39b4-7011-a4eb-342dcafb369b');
+        $u_4 = new \Infrastructure\Persistence\DoctrineORM\Repository\IdEntityUuid7('01875aec-39b4-7011-a4eb-342dcafb369b');
+
+        return new HtmlResponse(
+            (string) $u_0->toString() . '__' .
+                ($u_0->isEqualsTo($u_1) ? 'eq' : 'noteq') . '__' .
+                (string) $u_1->toString() . '<br>' .
+
+                (string) $u_3->toString() . '__' .
+                ($u_3->isEqualsTo($u_4) ? 'eq' : 'noteq') . '__' .
+                (string) $u_4->toString() . '<br>'
+
+        );
 
 
         /** @var \Doctrine\ORM\EntityManager $entityManager */

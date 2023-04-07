@@ -26,5 +26,5 @@ namespace Domain\Model\VO;
 interface IdEntityInterface
 {
     public function isEqualsTo(self $vo): bool;
-    public function __toString(): string;
+    public function toString(): string;
 }

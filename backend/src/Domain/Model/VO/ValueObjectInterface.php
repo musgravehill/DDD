@@ -9,7 +9,7 @@ namespace Domain\Model\VO;
 
 interface ValueObjectInterface
 {
-    public function isEqualsTo(ValueObjectInterface $vo): bool;
+    public function isEqualsTo(self $vo): bool;
     public function __toString(): string;
 }
 
