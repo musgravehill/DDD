@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\DoctrineORM\Entity;
+namespace Infrastructure\Persistence\DoctrineORM\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,16 +15,23 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
 
-use Domain\Entity\UserGender;
+use Domain\Model\Entity\UserGender;
+
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'user')]
 class User
 {
+    /*
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private ?int $id = null;
+    */
+    #[ORM\Id]
+    #[ORM\Column(type: "string", unique: true, length: 36, options: ['fixed' => true])]
+    #[ORM\GeneratedValue(strategy: "NONE")]
+    private $id;
 
     #[ORM\Column(type: 'string', enumType: UserGender::class)]
     private UserGender $gender = UserGender::Luntik;
@@ -78,15 +85,16 @@ class User
     #[ManyToMany(targetEntity: User::class, inversedBy: 'friendsWithMe', fetch: 'EXTRA_LAZY')]
     private Collection $myFriends;
 
-    public function __construct()
+    public function __construct($id)
     {
+        $this->id = $id;
         $this->interests = new ArrayCollection();
         $this->goals = new ArrayCollection();
         $this->friendsWithMe = new ArrayCollection();
         $this->myFriends = new ArrayCollection();
     }
 
-    /** Setters\Getters */    
+    /** Setters\Getters */
     public function setAuthEmail(string $email): void
     {
         $this->authEmail = $email;

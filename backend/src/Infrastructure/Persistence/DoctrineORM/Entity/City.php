@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\DoctrineORM\Entity;
+namespace Infrastructure\Persistence\DoctrineORM\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

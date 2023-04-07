@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\DoctrineORM\Entity;
+namespace Infrastructure\Persistence\DoctrineORM\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;

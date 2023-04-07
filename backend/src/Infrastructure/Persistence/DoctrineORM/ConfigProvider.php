@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\DoctrineORM;
+namespace Infrastructure\Persistence\DoctrineORM;
 
 use Doctrine\ORM\EntityManager;
 

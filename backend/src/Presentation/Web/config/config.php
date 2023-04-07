@@ -45,7 +45,7 @@ $aggregator = new ConfigAggregator([
     \Presentation\Web\Handler\Sys\ConfigProvider::class,
     \Presentation\Web\Handler\Home\ConfigProvider::class,    
 
-    \Infrastructure\DoctrineORM\ConfigProvider::class, 
+    \Infrastructure\Persistence\DoctrineORM\ConfigProvider::class, 
     
 
     // Load application config in a pre-defined order in such a way that local settings

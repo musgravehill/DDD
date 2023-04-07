@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\DoctrineORM;
+namespace Infrastructure\Persistence\DoctrineORM;
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Configuration;
@@ -54,6 +54,8 @@ class EntityManagerFactory
          В таком случае просто используйте консоль Doctrine для (повторного) создания прокси-классов.
          */
 
+        \Doctrine\DBAL\Types\Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
+
         $dbParams = [
             'dbname' => 'ddd',
             'user' => 'uddd',
@@ -79,7 +81,7 @@ class EntityManagerFactory
         $config->setMetadataDriverImpl($driverImpl);
         $config->setQueryCache($queryCache);
         $config->setProxyDir(__DIR__ . '/Proxy');
-        $config->setProxyNamespace('Infrastructure\DoctrineORM\Proxy');
+        $config->setProxyNamespace('Infrastructure\Persistence\DoctrineORM\Proxy');
 
         if ($applicationMode == "development") {
             $config->setAutoGenerateProxyClasses(true);
