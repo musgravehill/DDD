@@ -11,7 +11,7 @@ final class Money extends ValueObjectAbstract implements ValueObjectInterface
     public readonly int $fractionalCount; //cent, kopek, céntimo, dinar      
     public readonly MoneyСurrency $currency;
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->fractionalCount . ' fractional of ' . $this->currency->name;
     }

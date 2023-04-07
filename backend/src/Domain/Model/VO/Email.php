@@ -10,7 +10,7 @@ final class Email extends ValueObjectAbstract implements ValueObjectInterface
 {
     public readonly string $email;
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->email;
     }

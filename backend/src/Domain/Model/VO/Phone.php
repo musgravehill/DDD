@@ -10,7 +10,7 @@ final class Phone extends ValueObjectAbstract implements ValueObjectInterface
 {
     public readonly string $phone; //country code + area code + number + additional digits 
 
-    public function __toString(): string
+    public function toString(): string
     {
         return (string) $this->phone;
     }

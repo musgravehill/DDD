@@ -10,7 +10,7 @@ namespace Domain\Model\VO;
 interface ValueObjectInterface
 {
     public function isEqualsTo(self $vo): bool;
-    public function __toString(): string;
+    public function toString(): string;
 }
 
 // php-8.1 public readonly int $param;

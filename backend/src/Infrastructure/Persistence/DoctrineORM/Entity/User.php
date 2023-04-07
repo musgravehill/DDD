@@ -15,19 +15,12 @@ use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
 
-use Domain\Model\Entity\UserGender;
-
-use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Domain\Model\Enum\UserGender;  //???? it is ok dependency
 
 #[ORM\Entity]
 #[ORM\Table(name: 'user')]
 class User
 {
-    /*
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue]
-    */
     #[ORM\Id]
     #[ORM\Column(type: "string", unique: true, length: 36, options: ['fixed' => true])]
     #[ORM\GeneratedValue(strategy: "NONE")]
@@ -51,47 +44,13 @@ class User
     #[ORM\Column(type: 'bigint', name: 'amount')]
     private int $amount;
 
-    /** ManyToMany:bi Many users have many interests */
-    /** Owner side */
-    /** @var Collection<int, Interest> */
-    #[ManyToMany(targetEntity: Interest::class, inversedBy: 'users')]  //  inversedBy: Interest->users
-    #[JoinTable(name: 'users_interests')]
-    private Collection $interests;
-
-    /** OneToMany:bi One user has many goals */
-    /** Inverse side */
-    /** @var Collection<int, Goal> */
-    #[OneToMany(targetEntity: Goal::class, mappedBy: 'user', fetch: 'EXTRA_LAZY')] // mappedBy: Goal->user
-    private Collection $goals;
-
-    /** ManyToOne:uni Many users have one city */
-    /** Owner side */
-    #[ManyToOne(targetEntity: City::class, fetch: 'EXTRA_LAZY')]
-    #[JoinColumn(name: 'city_id', referencedColumnName: 'id')]
-    private City|null $city = null;
-
-    /** ManyToMany:self-referencing:bi Many users have many users=friends */
-    /** Inverse side */
-    /** @var Collection<int, User> */
-    #[ManyToMany(targetEntity: User::class, mappedBy: 'myFriends', fetch: 'EXTRA_LAZY')]
-    private Collection $friendsWithMe;
-
-    /** ManyToMany:self-referencing:bi Many users have many users=friends */
-    /** Owner side */
-    /** @var Collection<int, User> */
-    #[JoinTable(name: 'users_friends')]
-    #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
-    #[InverseJoinColumn(name: 'friend_user_id', referencedColumnName: 'id')]
-    #[ManyToMany(targetEntity: User::class, inversedBy: 'friendsWithMe', fetch: 'EXTRA_LAZY')]
-    private Collection $myFriends;
-
     public function __construct($id)
     {
-        $this->id = $id;
-        $this->interests = new ArrayCollection();
-        $this->goals = new ArrayCollection();
-        $this->friendsWithMe = new ArrayCollection();
-        $this->myFriends = new ArrayCollection();
+        // MAY BE __construct(SomeInterface $id)???? 
+        // WHERE CHECK ID? 
+        ///////////////////////////////////////
+        $this->id = $id; //////////////////////
+        ///////////////////////////////////////       
     }
 
     /** Setters\Getters */
@@ -129,42 +88,5 @@ class User
     public function getAmount(): int
     {
         return $this->amount;
-    }
-
-
-    //todo check it
-
-    public function removeFriend(User $user): void
-    {
-        $this->myFriends->removeElement($user);
-    }
-
-    public function addFriend(User $user): void
-    {
-        $this->myFriends[] = $user; // I can't control friendsWithMe 
-    }
-
-    public function myFriends()
-    {
-        return $this->myFriends; // I can't control friendsWithMe 
-    }
-
-    public function friendsWithMe()
-    {
-        return $this->friendsWithMe;
-    }
-    public function setCity(City $city): void
-    {
-        // No Inverse side, because UNI
-        $this->city = $city; // Owner side  
-    }
-    public function addGoal(Goal $goal): void
-    {
-        $this->goals[] = $goal; // Inverse side
-    }
-    public function addInterest(Interest $interest): void
-    {
-        $interest->addUser($this); // synchronously updating Inverse side
-        $this->interests[] = $interest; // Owner side  
     }
 }
