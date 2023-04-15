@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace Infrastructure\Persistence\DoctrineORM\Repository;
 
-use Domain\Model\VO\IdEntityInterface;
+use Domain\Model\VO\IdInterface;
 use Domain\Persistence\Repository\RepositoryInterface;
-
-use Ramsey\Uuid\Uuid;
+use Infrastructure\Persistence\Identifier\IdUUIDv7;
 
 abstract class RepositoryAbstract implements RepositoryInterface
 {
-    public function nextId(): IdEntityInterface
+    public function nextId(): IdInterface
     {
-        //Who is responsible for generating? Repository! 
-        $uuid = Uuid::uuid7();
-        return new IdEntityUuid7($uuid->toString());
+        return IdUUIDv7::fromNull();
     }
 }

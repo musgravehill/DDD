@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Persistence\Repository;
 
-use Domain\Model\VO\IdEntityInterface;
+use Domain\Model\VO\IdInterface;
 
 interface RepositoryInterface
 {
@@ -27,5 +27,5 @@ interface RepositoryInterface
         INTEGER => Make a table with a single auto-incremental id field and use that to get nextId.
         ? or Insert dummy-record, get Id. Then Update dummy-record to real data.
     */
-    public function nextId(): IdEntityInterface;
+    public function nextId(): IdInterface;
 }
