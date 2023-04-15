@@ -8,7 +8,6 @@ use Domain\Model\VO\IdInterface;
 use InvalidArgumentException;
 
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 final class IdUUIDv7 implements IdInterface
 {
