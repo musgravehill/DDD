@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Persistence\Repository;
+namespace Domain\Repository;
 
 use Domain\Model\VO\IdInterface;
 

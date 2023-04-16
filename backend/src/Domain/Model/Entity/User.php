@@ -19,7 +19,22 @@ class User
     private string $aboutMe = '';
     private Money $amount;
 
-    public function __construct()
+    public static function create(): self
+    {
+        return new self();
+    }
+
+    public static function createOnRegistration(): self
+    {
+        return new self();
+    }
+
+    public static function createByAdmin(): self
+    {
+        return new self();
+    }
+
+    private function __construct()
     {
     }
 
