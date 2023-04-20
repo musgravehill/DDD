@@ -8,8 +8,8 @@ use InvalidArgumentException;
 
 final class Money extends ValueObjectAbstract implements ValueObjectInterface
 {
-    public readonly int $fractionalCount; //cent, kopek, céntimo, dinar      
-    public readonly MoneyСurrency $currency;
+    private readonly int $fractionalCount; //cent, kopek, céntimo, dinar      
+    private readonly MoneyСurrency $currency;
 
     public function toString(): string
     {

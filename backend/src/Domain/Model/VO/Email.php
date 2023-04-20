@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 final class Email extends ValueObjectAbstract implements ValueObjectInterface
 {
-    public readonly string $email;
+    private readonly string $email;
 
     public function toString(): string
     {

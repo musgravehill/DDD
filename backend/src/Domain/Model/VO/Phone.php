@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 final class Phone extends ValueObjectAbstract implements ValueObjectInterface
 {
-    public readonly string $phone; //country code + area code + number + additional digits 
+    private readonly string $phone; //country code + area code + number + additional digits 
 
     public function toString(): string
     {
