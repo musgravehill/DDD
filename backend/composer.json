@@ -1,9 +1,10 @@
 {
-    "name": "mezzio/mezzio-skeleton",
-    "description": "Laminas mezzio skeleton. Begin developing PSR-15 middleware applications in seconds!",
+    "name": "DDD",
+    "description": "DDD. Laminas mezzio skeleton. Begin developing PSR-15 middleware applications in seconds!",
     "type": "project",
-    "license": "BSD-3-Clause",
+    "license": "?",
     "keywords": [
+        "DDD",
         "laminas",
         "mezzio",
         "skeleton",
@@ -13,14 +14,9 @@
         "psr-11",
         "psr-15"
     ],
-    "homepage": "https://mezzio.dev",
+    "homepage": "http://ddd.ru",
     "support": {
-        "docs": "https://docs.mezzio.dev/mezzio/",
-        "issues": "https://github.com/mezzio/mezzio-skeleton/issues",
-        "source": "https://github.com/mezzio/mezzio-skeleton",
-        "rss": "https://github.com/mezzio/mezzio-skeleton/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
+        "docs": "https://docs.mezzio.dev/mezzio/"        
     },
     "config": {
         "sort-packages": true,
@@ -30,7 +26,7 @@
             "laminas/laminas-component-installer": true
         },
         "platform": {
-            "php": "8.0.99"
+            "php": "8.2.4"
         }
     },
     "extra": {
