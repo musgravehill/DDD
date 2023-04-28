@@ -1,23 +1,19 @@
 {
-    "name": "DDD",
-    "description": "DDD. Laminas mezzio skeleton. Begin developing PSR-15 middleware applications in seconds!",
+    "name": "musgravehill/ddd",
+    "description": "DDD, Doctrine ORM, Mezzio PSR-15 middleware application",
     "type": "project",
     "license": "?",
     "keywords": [
-        "DDD",
         "laminas",
         "mezzio",
-        "skeleton",
+        "DDD",
         "middleware",
         "psr",
         "psr-7",
         "psr-11",
-        "psr-15"
+        "psr-15",
+        "Doctrine ORM"
     ],
-    "homepage": "http://ddd.ru",
-    "support": {
-        "docs": "https://docs.mezzio.dev/mezzio/"        
-    },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
@@ -26,7 +22,7 @@
             "laminas/laminas-component-installer": true
         },
         "platform": {
-            "php": "8.2.4"
+            "php": "8.2.0"
         }
     },
     "extra": {
@@ -42,7 +38,7 @@
         }
     },
     "require": {
-        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
+        "php": "~8.2.0",
         "composer/package-versions-deprecated": "^1.10.99",
         "dflydev/fig-cookies": "^3.0",
         "doctrine/dbal": "^3.6.1",
@@ -66,9 +62,9 @@
     "require-dev": {
         "laminas/laminas-development-mode": "^3.3.0",
         "mezzio/mezzio-tooling": "^2.8",
-        "phpunit/phpunit": "^9.5.11",
+        "phpunit/phpunit": "^10.0",
         "roave/security-advisories": "dev-master",
-        "vimeo/psalm": "^5.4"
+        "vimeo/psalm": "^5.9"
     },
     "autoload": {
         "psr-4": {
