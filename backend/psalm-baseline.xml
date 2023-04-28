@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.9.0@8b9ad1eb9e8b7d3101f949291da2b9f7767cd163">
+  <file src="src/Domain/Interactor/UserInteractor.php">
+    <MissingReturnType>
+      <code>in</code>
+    </MissingReturnType>
+  </file>
+  <file src="src/Domain/Model/Entity/User.php">
+    <MissingParamType>
+      <code>$authPhone</code>
+      <code>$passHash</code>
+    </MissingParamType>
+    <MissingReturnType>
+      <code>getId</code>
+    </MissingReturnType>
+    <MixedAssignment>
+      <code><![CDATA[$this->authPhone]]></code>
+      <code><![CDATA[$this->passHash]]></code>
+    </MixedAssignment>
+    <PropertyNotSetInConstructor>
+      <code>$amount</code>
+      <code>$authEmail</code>
+      <code>$authPhone</code>
+      <code>$id</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Domain/Model/VO/Email.php">
+    <MissingParamType>
+      <code>$email</code>
+    </MissingParamType>
+    <NoInterfaceProperties>
+      <code><![CDATA[$vo->email]]></code>
+    </NoInterfaceProperties>
+    <RedundantCast>
+      <code><![CDATA[(string) $this->email]]></code>
+    </RedundantCast>
+  </file>
+  <file src="src/Domain/Model/VO/Money.php">
+    <MixedPropertyFetch>
+      <code><![CDATA[$vo->currency->value]]></code>
+    </MixedPropertyFetch>
+    <NoInterfaceProperties>
+      <code><![CDATA[$vo->currency]]></code>
+      <code><![CDATA[$vo->fractionalCount]]></code>
+    </NoInterfaceProperties>
+  </file>
+  <file src="src/Domain/Model/VO/Phone.php">
+    <NoInterfaceProperties>
+      <code><![CDATA[$vo->phone]]></code>
+    </NoInterfaceProperties>
+    <RedundantCast>
+      <code><![CDATA[(string) $this->phone]]></code>
+    </RedundantCast>
+  </file>
+  <file src="src/Domain/Model/VO/ValueObjectAbstract.php">
+    <InvalidReturnType>
+      <code>bool</code>
+    </InvalidReturnType>
+  </file>
+  <file src="src/Domain/Repository/UserRepositoryInterface.php">
+    <MismatchingDocblockParamType>
+      <code>int</code>
+    </MismatchingDocblockParamType>
+  </file>
+  <file src="src/Domain/Specification/Tests/SpecificationTest.php">
+    <MissingReturnType>
+      <code>testCanAnd</code>
+      <code>testCanNot</code>
+      <code>testCanOr</code>
+    </MissingReturnType>
+  </file>
+  <file src="src/Infrastructure/EventAttribute/EventServiceProvider.php">
+    <MissingParamType>
+      <code>$subscriberClass</code>
+    </MissingParamType>
+    <MixedArgument>
+      <code>$subscriberClass</code>
+    </MixedArgument>
+    <MixedArrayAccess>
+      <code>$event</code>
+      <code>$listener</code>
+    </MixedArrayAccess>
+    <MixedAssignment>
+      <code>$subscriber</code>
+      <code>[$event, $listener]</code>
+    </MixedAssignment>
+  </file>
+  <file src="src/Infrastructure/EventAttribute/SubscriberProduct.php">
+    <MissingReturnType>
+      <code>onCreate</code>
+      <code>onDelete</code>
+    </MissingReturnType>
+  </file>
+  <file src="src/Infrastructure/Persistence/DoctrineORM/ConfigProvider.php">
+    <ParseError>
+      <code>UserRepositoryInterface</code>
+    </ParseError>
+    <UndefinedClass>
+      <code>UserRepositoryInterface</code>
+    </UndefinedClass>
+    <UndefinedConstant>
+      <code>TODO</code>
+    </UndefinedConstant>
+  </file>
+  <file src="src/Infrastructure/Persistence/DoctrineORM/EntityManagerFactory.php">
+    <RedundantCondition>
+      <code><![CDATA[$applicationMode == "development"]]></code>
+      <code><![CDATA[$applicationMode == "development"]]></code>
+    </RedundantCondition>
+  </file>
+  <file src="src/Infrastructure/Persistence/DoctrineORM/Repository/UserRepository.php">
+    <MismatchingDocblockParamType>
+      <code>int</code>
+    </MismatchingDocblockParamType>
+  </file>
+  <file src="src/Infrastructure/Persistence/DoctrineORM/Z/City.php">
+    <MissingConstructor>
+      <code>$name</code>
+    </MissingConstructor>
+  </file>
+  <file src="src/Infrastructure/Persistence/DoctrineORM/Z/Goal.php">
+    <MissingConstructor>
+      <code>$ttl</code>
+    </MissingConstructor>
+    <UndefinedMethod>
+      <code>addGoal</code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/Infrastructure/Persistence/DoctrineORM/Z/Interest.php">
+    <InvalidArgument>
+      <code>$user</code>
+    </InvalidArgument>
+    <PropertyNotSetInConstructor>
+      <code>$ttl</code>
+    </PropertyNotSetInConstructor>
+    <UndefinedDocblockClass>
+      <code>Collection</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="src/Infrastructure/Persistence/DoctrineORM/Z/User.php">
+    <DuplicateClass>
+      <code>User</code>
+    </DuplicateClass>
+  </file>
+  <file src="src/Infrastructure/Persistence/Identifier/IdUUIDv7.php">
+    <NoInterfaceProperties>
+      <code><![CDATA[$vo->id]]></code>
+    </NoInterfaceProperties>
+    <RedundantCast>
+      <code><![CDATA[(string) $this->id]]></code>
+    </RedundantCast>
+  </file>
+  <file src="src/Presentation/Web/Handler/Home/Handler/HomePageHandler.php">
+    <UndefinedDocblockClass>
+      <code>$guard</code>
+      <code>$guard</code>
+      <code>$me</code>
+      <code>$me</code>
+      <code>$me</code>
+      <code>$me</code>
+    </UndefinedDocblockClass>
+    <UnevaluatedCode>
+      <code><![CDATA[if ($this->renderer === null) {
+            return new JsonResponse([
+                'welcome' => 'Congratulations! You have installed the mezzio skeleton application.',
+                'docsUrl' => 'https://docs.mezzio.dev/mezzio/',
+            ] + $data);
+        }]]></code>
+      <code><![CDATA[if ($this->renderer instanceof LaminasViewRenderer) {
+            $data['rendererName'] = 'Laminas View';
+            $data['rendererDocs'] = 'https://docs.laminas.dev/laminas-view/';
+        }]]></code>
+      <code><![CDATA[if ($this->router instanceof LaminasRouter) {
+            $data['routerName'] = 'Laminas Router';
+            $data['routerDocs'] = 'https://docs.laminas.dev/laminas-router/';
+        }]]></code>
+      <code><![CDATA[return new HtmlResponse(
+            $this->renderer->render(
+                'home_view::index', // registered 'folderName/fileName.phtml'   see Handler/Sys or Handler/*** */
+                array_merge(
+                    $data,
+                    ['layout' => 'sys_layout::common',]  // registered 'folderName/fileName.phtml'   see Handler/Sys or Handler/***
+                )
+            )
+        );]]></code>
+      <code><![CDATA[switch ($this->container::class) {
+            case ServiceManager::class:
+                $data['containerName'] = 'Laminas Servicemanager';
+                $data['containerDocs'] = 'https://docs.laminas.dev/laminas-servicemanager/';
+                break;
+        }]]></code>
+    </UnevaluatedCode>
+    <UnusedVariable>
+      <code>$data</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/Presentation/Web/Handler/Page/ConfigProvider.php">
+    <UndefinedClass>
+      <code>DelegatorFactory\PageDelegatorFactory_1</code>
+      <code>DelegatorFactory\PageDelegatorFactory_2</code>
+      <code>DelegatorFactory\PageDelegatorFactory_3</code>
+    </UndefinedClass>
+  </file>
+  <file src="src/Presentation/Web/Handler/Page/Handler/PageHandler.php">
+    <MixedAssignment>
+      <code>$eventServiceProvider</code>
+    </MixedAssignment>
+    <MixedMethodCall>
+      <code>register</code>
+    </MixedMethodCall>
+    <UndefinedClass>
+      <code>EventServiceProvider</code>
+    </UndefinedClass>
+  </file>
+  <file src="src/Presentation/Web/Middleware/Validator/ValidatorMiddleware.php">
+    <MixedAssignment>
+      <code>$routeName</code>
+      <code>$routeResult</code>
+    </MixedAssignment>
+    <MixedMethodCall>
+      <code>getMatchedRouteName</code>
+    </MixedMethodCall>
+    <UnusedVariable>
+      <code>$routeName</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/Presentation/Web/config/pipeline.php">
+    <UnusedClosureParam>
+      <code>$container</code>
+      <code>$factory</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Presentation/Web/public/index.php">
+    <MixedArgument>
+      <code>$factory</code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code>$factory</code>
+    </MixedAssignment>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$_SERVER['SCRIPT_FILENAME']]]></code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+</files>

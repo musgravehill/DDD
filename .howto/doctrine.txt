@@ -1,7 +1,7 @@
 edit composer.json
 run docker
 connect to docker, attach shell 
-  cd /var/www/ddd && composer update
+  cd /var/www/ddd && composer update --no-scripts        #Skips execution of scripts defined in composer.json
 
 
 // DoctrineORM\Service\EntityManagerFactory generate $em. See at DoctrineORM\ConfigProvider
