@@ -86,7 +86,7 @@ composer require "lcobucci/clock:^2.0"
 composer require "dflydev/fig-cookies:^3.0"
 
 ============= PHPUNIT ==============================================================================================
-/var/www/ddd/vendor/bin/phpunit --colors=always -c /var/www/ddd/phpunit.xml --testsuite 'default'
+/var/www/ddd/vendor/bin/phpunit --colors=always test 
 
 
 ============= PSALM ================================================================================================
