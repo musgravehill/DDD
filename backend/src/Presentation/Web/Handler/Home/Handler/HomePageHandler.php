@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Presentation\Web\Handler\Home\Handler;
 
-
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\ServiceManager\ServiceManager;
@@ -45,7 +44,7 @@ class HomePageHandler implements RequestHandlerInterface
 
         /** @var CsrfGuardInterface */
         $guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
-        $_token = $guard->generateToken();
+        //$_token = $guard->generateToken();
         //return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);        
 
         return new HtmlResponse((string)'Hello');

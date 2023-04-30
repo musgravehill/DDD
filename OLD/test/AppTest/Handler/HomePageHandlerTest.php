@@ -11,6 +11,7 @@ use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Presentation\Web\Middleware\Session\SessionProviderInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -22,10 +23,13 @@ class HomePageHandlerTest extends TestCase
     /** @var RouterInterface&MockObject */
     protected $router;
 
+    protected SessionProviderInterface $sessionProvider;
+
     protected function setUp(): void
     {
         $this->container = $this->createMock(ContainerInterface::class);
         $this->router    = $this->createMock(RouterInterface::class);
+        $this->sessionProvider = $this->createMock(SessionProviderInterface::class);
     }
 
     public function testReturnsJsonResponseWhenNoTemplateRendererProvided(): void
@@ -33,7 +37,8 @@ class HomePageHandlerTest extends TestCase
         $homePage = new HomePageHandler(
             $this->container::class,
             $this->router,
-            null
+            null,
+            $this->sessionProvider
         );
         $response = $homePage->handle(
             $this->createMock(ServerRequestInterface::class)

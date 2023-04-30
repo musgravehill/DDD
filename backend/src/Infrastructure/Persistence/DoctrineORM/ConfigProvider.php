@@ -23,7 +23,7 @@ class ConfigProvider
         return [
             'factories'  => [
                 EntityManager::class => EntityManagerFactory::class,
-                TODO UserRepositoryInterface::class => UserRepository::class,
+                //TODO UserRepositoryInterface::class => UserRepository::class,
             ],
         ];
     }
