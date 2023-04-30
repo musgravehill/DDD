@@ -10,8 +10,8 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
- 
-abstract class AbstractWebTest extends TestCase
+
+class AbstractWebTest extends TestCase
 {
     protected ContainerInterface $container;
     protected Application $app;
@@ -22,12 +22,12 @@ abstract class AbstractWebTest extends TestCase
         $this->initContainer();
         $this->initApp();
         $this->initPipeline();
-        $this->initRoutes();         
+        $this->initRoutes();
     }
 
     protected function initContainer(): void
     {
-        $this->container = require __DIR__ . '/../../../src/Presentation/Web/config/container.php';   
+        $this->container = require __DIR__ . '/../../../src/Presentation/Web/config/container.php';
     }
 
     protected function initApp(): void
@@ -46,5 +46,9 @@ abstract class AbstractWebTest extends TestCase
         $factory = $this->container->get(MiddlewareFactory::class);
         (require __DIR__ . '/../../../src/Presentation/Web/config/routes.php')($this->app, $factory, $this->container);
     }
-    
+
+    public function testNull()
+    {
+        $this->assertTrue(true, 'This should already work.');
+    }
 }
