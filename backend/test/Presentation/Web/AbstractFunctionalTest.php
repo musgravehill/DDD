@@ -11,7 +11,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
  
-abstract class MyHelper extends TestCase
+abstract class AbstractFunctionalTest extends TestCase
 {
     protected ContainerInterface $container;
     protected Application $app;
