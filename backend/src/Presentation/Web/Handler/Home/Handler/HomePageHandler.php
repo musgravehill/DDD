@@ -44,7 +44,7 @@ class HomePageHandler implements RequestHandlerInterface
 
         /** @var CsrfGuardInterface */
         $guard = $request->getAttribute(CsrfMiddleware::GUARD_ATTRIBUTE);
-        //$_token = $guard->generateToken();
+        $_token = $guard->generateToken();
         //return new HtmlResponse((string)$session->get('counter') . '__' . $session::class);        
 
         return new HtmlResponse((string)'Hello');

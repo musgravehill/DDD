@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Test\Presentation\Web;
 
-use Helmich\JsonAssert\Constraint\JsonValueMatchesMany;
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-
  
-abstract class AbstractFunctionalTest extends TestCase
+abstract class MyHelper extends TestCase
 {
     protected ContainerInterface $container;
     protected Application $app;
@@ -24,7 +22,7 @@ abstract class AbstractFunctionalTest extends TestCase
         $this->initContainer();
         $this->initApp();
         $this->initPipeline();
-        $this->initRoutes();        
+        $this->initRoutes();         
     }
 
     protected function initContainer(): void

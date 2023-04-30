@@ -16,7 +16,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Laminas\Diactoros\ServerRequest;
 
-class HomePageHandlerTest extends AbstractFunctionalTest
+class HomePageHandlerTest extends MyHelper
 {
     /*    
     protected $container;    
@@ -54,6 +54,6 @@ class HomePageHandlerTest extends AbstractFunctionalTest
 
         $response = $this->app->handle($request);
         self::assertInstanceOf(HtmlResponse::class, $response);
-        self::assertEquals('Hello', $response->getBody()->__toString());        
+        self::assertEquals('Hello', $response->getBody()->__toString());
     }
 }
