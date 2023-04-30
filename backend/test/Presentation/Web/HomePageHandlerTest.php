@@ -16,7 +16,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Laminas\Diactoros\ServerRequest;
 
-class HomePageHandlerTest extends AbstractFunctionalTest
+class HomePageHandlerTest extends AbstractHomePageHandlerTest
 {
     /*    
     protected $container;    
