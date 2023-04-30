@@ -11,7 +11,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
  
-abstract class AbstractHomePageHandlerTest extends TestCase
+abstract class AbstractWebTest extends TestCase
 {
     protected ContainerInterface $container;
     protected Application $app;
