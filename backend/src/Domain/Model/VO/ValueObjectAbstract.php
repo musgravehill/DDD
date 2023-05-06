@@ -12,8 +12,10 @@ abstract class ValueObjectAbstract
     public function isEqualsTo(ValueObjectInterface $vo): bool
     {
         if (get_class($this) !== get_class($vo)) {
-            return false;
+            throw new InvalidArgumentException('Objects of different classes');
         }
+
+        return true;
         //It can NOT compare 2 object with plain Reflections::properties because some VO has objects\Enum as property
         // $foo->name === $bar->name
         // $foo->colorEnum === $bar->colorEnum no way!         
