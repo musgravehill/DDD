@@ -13,8 +13,9 @@ final class Money extends ValueObjectAbstract implements ValueObjectInterface
 
     public function toString(): string
     {
-        return (string) $this->fractionalCount . ' fractional of ' . $this->currency->name;
+        return (string) $this->fractionalCount . ' ' . $this->currency->name;
     }
+
 
     //self-validation
     public function __construct(int $fractionalCount, MoneyСurrency $currency)
@@ -22,7 +23,7 @@ final class Money extends ValueObjectAbstract implements ValueObjectInterface
         if ($fractionalCount < 0) {
             throw new InvalidArgumentException('FractionalCount should be a positive value.');
         }
-        if (!filter_var($fractionalCount, FILTER_VALIDATE_INT)) {
+        if (filter_var($fractionalCount, FILTER_VALIDATE_INT) === false) {
             throw new InvalidArgumentException('FractionalCount should be an INT.');
         }
         $this->fractionalCount = $fractionalCount;
@@ -51,8 +52,14 @@ final class Money extends ValueObjectAbstract implements ValueObjectInterface
 
         return new self(fractionalCount: ($this->fractionalCount + $vo->fractionalCount), currency: $this->currency);
     }
+
     private function isCurrencyEqualsTo(self $vo): bool
     {
         return $this->currency === $vo->currency;
+    }
+
+    public function getFractionalCount(): int
+    {
+        return $this->fractionalCount;
     }
 }
