@@ -62,4 +62,9 @@ final class Money extends ValueObjectAbstract implements ValueObjectInterface
     {
         return $this->fractionalCount;
     }
+    
+    public function getСurrency(): MoneyСurrency
+    {
+        return $this->currency;
+    }
 }
