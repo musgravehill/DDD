@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Infrastructure\Persistence\Identifier;
 
 use Domain\Model\VO\IdInterface;
+use Domain\Model\VO\ValueObjectAbstract;
+use Domain\Model\VO\ValueObjectInterface;
 use InvalidArgumentException;
 
 use Ramsey\Uuid\Uuid;
 
-final class IdUUIDv7 implements IdInterface
+final class IdUUIDv7 extends ValueObjectAbstract implements IdInterface, ValueObjectInterface
 {
     //immutable
     private readonly string $id;
@@ -29,11 +31,9 @@ final class IdUUIDv7 implements IdInterface
     }
 
     //structural equality, compare
-    public function isEqualsTo(IdInterface $vo): bool
+    public function isEqualsTo(ValueObjectInterface $vo): bool
     {
-        if (get_class($this) !== get_class($vo)) {
-            return false;
-        }
+        parent::isEqualsTo($vo);
         if ($this->id !== $vo->id) {
             return false;
         }
